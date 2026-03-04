@@ -1,0 +1,1 @@
+# Scholarship-AWS-AI-Software-Quality-Engineering-Fase02
