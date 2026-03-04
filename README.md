@@ -42,4 +42,4 @@ Essa estrutura permite fácil navegação, consulta e compreensão das atividade
 Para obter uma cópia local deste repositório, execute o seguinte comando no terminal:
 
 ```bash
-https://github.com/DanielaSianaPabis/Scholarship-AWS-AI-Software-Quality-Engineering-Fase02.git
+git clone https://github.com/DanielaSianaPabis/Scholarship-AWS-AI-Software-Quality-Engineering-Fase02.git
