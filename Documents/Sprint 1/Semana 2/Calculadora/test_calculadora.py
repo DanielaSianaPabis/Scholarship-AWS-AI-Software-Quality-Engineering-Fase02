@@ -6,20 +6,15 @@ Testes unitários para a classe Calculadora
 """
 
 """
-Uso de 'pytest.mark.parametrize' para executar o mesmo teste, mas com diferentes valores de entrada e saída
-
 Testes que contemplam resultados decimais (divisão e radiciação) usam, para exemplo, 'pytest.approx' e 'rel' para tolerância
 """
 
 @pytest.fixture
 def calculadora():
-    """
-    Cria e retorna uma instância da classe Calculadora, o que evita repetição de código
-    """
     return Calculadora()
 
 # Testes para soma
-@pytest.mark.parametrize("operando1, operando2, resultado",
+@pytest.mark.parametrize("parcela1, parcela2, resultado",
     [
         (2, 9, 11),
         (-1, 1, 0),
@@ -27,11 +22,11 @@ def calculadora():
         (-2, -2, -4)
     ],
 )
-def test_soma(calculadora, operando1, operando2, resultado):
-    assert calculadora.soma(operando1, operando2) == resultado
+def test_soma(calculadora, parcela1, parcela2, resultado):
+    assert calculadora.soma(parcela1, parcela2) == resultado
 
 #Testes para subtração
-@pytest.mark.parametrize("operando1, operando2, resultado",
+@pytest.mark.parametrize("minuendo, subtraendo, resultado",
     [
         (8, 7, 1),
         (7, 8, -1),
@@ -39,11 +34,11 @@ def test_soma(calculadora, operando1, operando2, resultado):
         (-2, 2, -4)
     ],
 )
-def test_subtracao(calculadora, operando1, operando2, resultado):
-    assert calculadora.subtracao(operando1, operando2) == resultado
+def test_subtracao(calculadora, minuendo, subtraendo, resultado):
+    assert calculadora.subtracao(minuendo, subtraendo) == resultado
 
 #Testes para multiplicação
-@pytest.mark.parametrize("operando1, operando2, resultado",
+@pytest.mark.parametrize("multiplicando, multiplicador, resultado",
     [
         (4, 5, 20),
         (4, 1, 4),
@@ -51,8 +46,8 @@ def test_subtracao(calculadora, operando1, operando2, resultado):
         (4, -5, -20),
     ],
 )
-def test_multiplicacao(calculadora, operando1, operando2, resultado):
-    assert calculadora.multiplicacao(operando1, operando2) == resultado
+def test_multiplicacao(calculadora, multiplicando, multiplicador, resultado):
+    assert calculadora.multiplicacao(multiplicando, multiplicador) == resultado
 
 #Testes para divisão (2 casos)
 @pytest.mark.parametrize("dividendo, divisor, resultado",
@@ -68,11 +63,9 @@ def test_divisao(calculadora, dividendo, divisor, resultado):
     assert calculadora.divisao(dividendo, divisor) == resultado
 
 def test_divisao_por_zero(calculadora):
-    """
-    Teste para o caso de divisão por zero. Verificando se é lançada a excessão de 'ZeroDivisionError'
-    """
-    with pytest.raises(ZeroDivisionError):
+    with pytest.raises(ZeroDivisionError) as exec_info:
         calculadora.divisao(4, 0)
+    assert "Não é possível dividir por zero" in str(exec_info)
 
 #Testes para potência
 @pytest.mark.parametrize("base, expoente, resultado",
@@ -99,15 +92,11 @@ def test_raiz(calculadora, indice, radicando, resultado):
     assert calculadora.raiz(indice, radicando) == resultado
 
 def test_raiz_indice_zero(calculadora):
-    """
-    Teste para o caso de índice zero. Verificando se é lançada a excessão de 'ValueError'
-    """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as exec_info:
         calculadora.raiz(0, 225)
+    assert "O índice não pode ser zero" in str(exec_info)
 
 def test_raiz_negativa_indice_par(calculadora):
-    """
-    Teste para o caso de índice par e radicando negativo. Verificando se é lançada a excessão de 'ValueError'
-    """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as exec_info:
         calculadora.raiz(12, -64)
+    assert "Não existe solução real para radicando negativo com índice par" in str(exec_info)
