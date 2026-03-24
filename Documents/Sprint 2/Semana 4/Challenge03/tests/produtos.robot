@@ -1,3 +1,5 @@
+[Documentation]   Testes de API para os endpoints de Produtos
+
 *** Settings ***
 Resource    ../resources/produtos.resource
 Resource    ../resources/autenticacao.resource
@@ -7,6 +9,8 @@ Suite Setup    Criar Sessao
 
 *** Test Cases ***
 CT-P01 Criar produto
+    [Documentation]    Testa a criação de um produto com dados válidos e permissão:
+
     ${email}=    Gerar Email Aleatorio
     Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
 
@@ -18,6 +22,8 @@ CT-P01 Criar produto
     
 
 CT-P02 Criar produto com usuário comum
+    [Documentation]    Testa a criação de um produto utilizando um token de um usuário sem permissão (administrador=false):
+
     ${email}=    Gerar Email Aleatorio
     Criar Usuario    User    ${email}    ${SENHA_USER}    false
 
@@ -29,11 +35,20 @@ CT-P02 Criar produto com usuário comum
 
 
 CT-P03 Criar produto sem token
+    [Documentation]    Testa a criação de um produto sem fornecer um token de autenticação:
+    
+    ${email}=    Gerar Email Aleatorio
+    Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
+
+    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
+
     ${res}=  Criar produto sem token  
     Validar Sem Token    ${res}
 
 
 CT-P04 Contrato produto
+    [Documentation]    Valida o contrato da resposta da criação de um produto:
+
     ${email}=    Gerar Email Aleatorio
     Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
 
