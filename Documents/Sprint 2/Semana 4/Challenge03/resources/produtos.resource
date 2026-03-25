@@ -30,47 +30,54 @@ Criar Produto
 
     RETURN    ${response}
 
-Criar produto sem token
-    [Documentation]    Tenta criar um produto sem fornecer um token de autenticação, retornando a resposta da requisição:
 
-    ${produto}=    Generate Random String    5
+Excluir Produto
+    [Documentation]    Exclui um produto utilizando token de autenticação e o ID do produto, retornando a resposta da requisição:
 
-    ${body}=    Create Dictionary
-    ...    nome=Produto ${produto}
-    ...    preco=150
-    ...    descricao=Teste 2
-    ...    quantidade=6
+    [Arguments]    ${token}    ${produto_id}
 
-    ${response}=    POST On Session
+    ${headers}=    Criar Header Com Token    ${token}
+
+    ${response}=    DELETE On Session
     ...    serverest
-    ...    /produtos
-    ...    json=${body}
+    ...    /produtos/${produto_id}
+    ...    headers=${headers}
     ...    expected_status=any
 
     RETURN    ${response}
 
+
 Validar Produto Criado
-    [Documentation]    Valida se o produto foi criado com sucesso, verificando o status code da resposta:
+    [Documentation]    Valida se o produto foi criado com sucesso, através do status code da resposta:
 
     [Arguments]    ${response}
     Status Should Be    201    ${response}
 
+
 Validar Sem Permissao
-    [Documentation]   Valida se a criação do produto falhou devido à falta de permissão, verificando o status code da resposta:
+    [Documentation]   Valida se a criação do produto falhou devido à falta de permissão, atarvés do status code da resposta:
 
     [Arguments]    ${response}
     Status Should Be    403    ${response}
 
-Validar Sem Token
-    [Documentation]   Valida se a criação do produto falhou devido à ausência de token, verificando o status code da resposta:
-
-    [Arguments]    ${response}
-    Status Should Be    401    ${response}
 
 Validar Contrato Produto
-    [Documentation]    Valida o contrato da resposta da criação do produto, verificando a presença de 'message' e '_id':
-
+    [Documentation]    Valida os elementos do contrato da resposta da criação de um produto, verificando a presença de 'message' e '_id' na resposta:
     [Arguments]    ${response}
+
+    Status Should Be    201    ${response}
+
     ${json}=    Set Variable    ${response.json()}
     Dictionary Should Contain Key    ${json}    message
     Dictionary Should Contain Key    ${json}    _id
+
+    Should Be Equal    ${json['message']}    Cadastro realizado com sucesso
+    Should Not Be Empty    ${json['_id']}
+
+
+Validar Exclusão Produto Inválido 
+    [Documentation]    Valida a exclusão do produto com ID inválido, através do status code da resposta:
+
+    [Arguments]    ${response}
+    Status Should Be    200    ${response}
+

@@ -14,6 +14,5 @@ Criar Header Com Token
     [Documentation]    Cria um header de autenticação utilizando o token fornecido:
 
     [Arguments]    ${token}
-    ${headers}=    Create Dictionary
-    ...    Authorization=${token}
+    ${headers}=    Create Dictionary    Authorization=${token}
     RETURN    ${headers}

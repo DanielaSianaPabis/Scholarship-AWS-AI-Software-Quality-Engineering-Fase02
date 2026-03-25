@@ -26,14 +26,7 @@ CT-C01 Criar carrinho
     Validar Carrinho Criado    ${res}
 
 
-CT-C02 Acessar Carrinho sem autenticação
-    [Documentation]    Testa o acesso de um carrinho sem fornecer um token e a autenticação:
-
-    ${res}=    Acessar carrinho sem autenticação
-    Validar Carrinho Sem Autenticação    ${res}
-
-
-CT-C03 Produto inválido
+CT-C02 Produto inválido
     [Documentation]    Testa a criação de um carrinho utilizando um ID de produto inválido:
     
     ${email}=    Gerar Email Aleatorio
@@ -42,5 +35,23 @@ CT-C03 Produto inválido
     ${login}=    Realizar Login    ${email}    ${SENHA_USER}
     ${token}=    Obter Token    ${login}
 
-    ${res}=    Criar Carrinho    ${token}    id_invalido
-    Validar Produto Invalido    ${res}
+    ${res}=    Criar Carrinho    ${token}    BbgfO3IlXI4xIII8
+    Validar Produto Inválido    ${res}
+
+
+CT-C03 Concluir uma compra
+    [Documentation]    Testa a conclusão de uma compra com sucesso:
+
+    ${email}=    Gerar Email Aleatorio
+    Criar Usuario    User    ${email}    ${SENHA_USER}    true
+
+    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
+    ${token}=    Obter Token    ${login}
+
+    ${produto}=    Criar Produto    ${token}
+    ${produto_id}=    Set Variable    ${produto.json()['_id']}
+
+    ${carrinho}=    Criar Carrinho    ${token}    ${produto_id}
+
+    ${res}=    Concluir Compra    ${token}
+    Validar Compra Concluida    ${res}

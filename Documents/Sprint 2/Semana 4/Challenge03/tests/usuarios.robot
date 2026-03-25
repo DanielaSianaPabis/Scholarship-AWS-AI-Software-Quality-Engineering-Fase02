@@ -22,8 +22,9 @@ CT-U02 Criar usuário com email duplicado
     ${res}=    Criar Usuario    user2    ${email}    ${SENHA_USER}    false
     Validar Email Duplicado    ${res}
 
-CT-U03 Contrato listagem de usuários
-    [Documentation]    Valida o contrato da resposta da listagem de usuários:
+CT-U03 Cadastro com campos vazios
+    [Documentation]    Testa a criação de um usuário contendo campos com strings vazias:
 
-    ${res}=    Listar Usuarios
-    Validar Contrato Usuarios    ${res}
+    ${email}=    Gerar Email Aleatorio
+    ${res}=    Criar Usuario    ''    ${email}    ''    false
+    Validar Erro Campos Obrigatórios    ${res}

@@ -35,28 +35,24 @@ Criar Usuario
 
     RETURN    ${response}
 
-Listar Usuarios
-    [Documentation]    Lista os usuários cadastrados na API, retornando a resposta da requisição:
-
-    ${response}=    GET On Session    serverest    /usuarios
-    RETURN    ${response}
 
 Validar Usuario Cadastrado
-    [Documentation]    Valida se o usuário foi criado com sucesso, verificando o status code da resposta:
+    [Documentation]    Valida se o usuário foi criado com sucesso, ataravés do status code da resposta:
 
     [Arguments]    ${response}
     Status Should Be    201    ${response}
 
+
 Validar Email Duplicado
-    [Documentation]    Valida se a criação do usuário falhou devido a um email duplicado, verificando o status code da resposta:
+    [Documentation]    Valida se a criação do usuário falhou devido a um email duplicado, através do status code da resposta:
 
     [Arguments]    ${response}
     Status Should Be    400    ${response}
 
-Validar Contrato Usuarios
-    [Documentation]    Valida o contrato da resposta da listagem de usuários, verificando a presença de 'quantidade' e 'usuarios':
+
+Validar Erro Campos Obrigatórios
+    [Documentation]    Valida se a criação do usuário falhou devido à ausência de campos obrigatórios:
 
     [Arguments]    ${response}
-    ${json}=    Set Variable    ${response.json()}
-    Dictionary Should Contain Key    ${json}    quantidade
-    Dictionary Should Contain Key    ${json}    usuarios
+
+    Status Should Be    400    ${response}
