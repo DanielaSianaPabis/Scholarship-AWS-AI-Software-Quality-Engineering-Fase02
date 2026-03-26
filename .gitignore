@@ -1,0 +1,15 @@
+# Python:
+__pycache__/
+*.py[cod]
+
+# Robot Framework:
+#results/
+#output.xml
+#log.html
+#report.html
+
+# Visual Studio Code:
+.vscode/
+
+# Virtual Environment:
+venv/

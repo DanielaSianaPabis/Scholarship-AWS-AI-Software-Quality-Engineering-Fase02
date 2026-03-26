@@ -1,0 +1,2833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.14.3 on win32)" generated="2026-03-26T09:03:55.671697" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\danis\OneDrive\Documentos\Scholarship-AWS-AI-Software-Quality-Engineering-Fase02\Documents\Sprint 2\Semana 4\Challenge03\tests">
+<suite id="s1-s1" name="Autenticacao" source="C:\Users\danis\OneDrive\Documentos\Scholarship-AWS-AI-Software-Quality-Engineering-Fase02\Documents\Sprint 2\Semana 4\Challenge03\tests\autenticacao.robot">
+<kw name="Criar Sessao" owner="base" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:55.785588" level="INFO">Creating Session using : alias=serverest, url=https://compassuol.serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-26T09:03:55.785459" elapsed="0.000263"/>
+</kw>
+<doc>Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:</doc>
+<status status="PASS" start="2026-03-26T09:03:55.785110" elapsed="0.000675"/>
+</kw>
+<test id="s1-s1-t1" name="CT-A01 Login válido" line="10">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:55.786658" level="INFO">${random} = kCgnY</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:55.786475" elapsed="0.000203"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:55.786939" level="INFO">${email} = user_kCgnY@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:55.786746" elapsed="0.000207"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:55.786985" elapsed="0.000031"/>
+</return>
+<msg time="2026-03-26T09:03:55.787084" level="INFO">${email} = user_kCgnY@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:55.786318" elapsed="0.000778"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:55.787742" level="INFO">${random} = JUzs</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:55.787638" elapsed="0.000121"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:55.788165" level="INFO">${body} = {'nome': 'User Login', 'email': 'user_kCgnY@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:55.787828" elapsed="0.000353"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:56.788963" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '107', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User Login", "email": "user_kCgnY@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:03:56.789043" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '95b7773499ab9de7942d1006e89cde51;o=1', 'date': 'Thu, 26 Mar 2026 12:03:58 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "bsPqRvHiNl287Jme"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:56.789083" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:56.789557" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:55.788246" elapsed="1.001333"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:56.789629" elapsed="0.000036"/>
+</return>
+<arg>User Login</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:55.787440" elapsed="1.002298"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:56.790397" level="INFO">${body} = {'email': 'user_kCgnY@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.790105" elapsed="0.000307"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:56.959943" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_kCgnY@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:03:56.960010" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '338590ac0220997c942d1006e89cdacf', 'date': 'Thu, 26 Mar 2026 12:03:58 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfa0NnbllAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOCwiZXhwIjoxNzc0NTI3MjM4fQ.cl11yHs12tzehmWNoIKaMjC0PFfolojuK4Lv-psSyc0"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:56.960055" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:56.960688" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.790482" elapsed="0.170233"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:56.960772" elapsed="0.000032"/>
+</return>
+<msg time="2026-03-26T09:03:56.960914" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<var>${res}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:56.789910" elapsed="0.171019"/>
+</kw>
+<kw name="Validar Login Sucesso" owner="autenticacao">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.961317" elapsed="0.000159"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o login foi realizado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:03:56.961131" elapsed="0.000381"/>
+</kw>
+<doc>Testa o login com credenciais válidas</doc>
+<status status="PASS" start="2026-03-26T09:03:55.785828" elapsed="1.175907"/>
+</test>
+<test id="s1-s1-t2" name="CT-A02 Login inválido" line="20">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:56.962695" level="INFO">${random} = vpKXO</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.962582" elapsed="0.000129"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:56.962964" level="INFO">${email} = user_vpKXO@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.962774" elapsed="0.000204"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:56.963005" elapsed="0.000018"/>
+</return>
+<msg time="2026-03-26T09:03:56.963086" level="INFO">${email} = user_vpKXO@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:56.962440" elapsed="0.000659"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:56.963604" level="INFO">${random} = CNBk</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.963511" elapsed="0.000108"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:56.964055" level="INFO">${body} = {'nome': 'User Login', 'email': 'user_vpKXO@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.963686" elapsed="0.000390"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:57.132800" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '107', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User Login", "email": "user_vpKXO@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:03:57.132861" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '596646277e3bccfb942d1006e89cd708', 'date': 'Thu, 26 Mar 2026 12:03:58 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "rjDo1SRyBcowAWJ9"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:57.132898" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:57.133328" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:56.964157" elapsed="0.169195"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:57.133404" elapsed="0.000030"/>
+</return>
+<arg>User Login</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:56.963337" elapsed="0.170173"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.134244" level="INFO">${body} = {'email': 'user_vpKXO@email.com', 'password': 'senha_incorreta'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.133996" elapsed="0.000264"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:57.300664" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '64', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_vpKXO@email.com", "password": "senha_incorreta"}' 
+ </msg>
+<msg time="2026-03-26T09:03:57.300723" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=401, reason=Unauthorized 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'f01ab7866435ba8d942d1006e89cdef0', 'date': 'Thu, 26 Mar 2026 12:03:58 GMT', 'server': 'Google Frontend', 'Content-Length': '48'} 
+ body={
+    "message": "Email e/ou senha inválidos"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:57.300763" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:57.301112" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.134327" elapsed="0.166808"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:57.301184" elapsed="0.000029"/>
+</return>
+<msg time="2026-03-26T09:03:57.301304" level="INFO">${res} = &lt;Response [401]&gt;</msg>
+<var>${res}</var>
+<arg>${email}</arg>
+<arg>senha_incorreta</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.133804" elapsed="0.167514"/>
+</kw>
+<kw name="Validar Login Invalido" owner="autenticacao">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>401</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.301768" elapsed="0.000108"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o login falhou, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.301583" elapsed="0.000327"/>
+</kw>
+<doc>Testa o login com credenciais inválidas (senha incorreta)</doc>
+<status status="PASS" start="2026-03-26T09:03:56.962080" elapsed="0.340119"/>
+</test>
+<test id="s1-s1-t3" name="CT-A03 Contrato login" line="30">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:57.303241" level="INFO">${random} = iNLPt</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.303138" elapsed="0.000123"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.303499" level="INFO">${email} = user_iNLPt@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.303321" elapsed="0.000192"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:57.303539" elapsed="0.000021"/>
+</return>
+<msg time="2026-03-26T09:03:57.303619" level="INFO">${email} = user_iNLPt@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.302999" elapsed="0.000632"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:57.304357" level="INFO">${random} = vqJl</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.304253" elapsed="0.000119"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.304765" level="INFO">${body} = {'nome': 'User Login', 'email': 'user_iNLPt@email.com', 'password': 'password123', 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.304439" elapsed="0.000342"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:57.474035" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '108', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User Login", "email": "user_iNLPt@email.com", "password": "password123", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:03:57.474093" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '05efd5bc3a71db56942d1006e89cd9d5', 'date': 'Thu, 26 Mar 2026 12:03:59 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "iliaV2469468eHsw"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:57.474131" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:57.474398" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.304848" elapsed="0.169572"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:57.474468" elapsed="0.000031"/>
+</return>
+<arg>User Login</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.303954" elapsed="0.170617"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.475219" level="INFO">${body} = {'email': 'user_iNLPt@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.474982" elapsed="0.000252"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:57.638679" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_iNLPt@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:03:57.638740" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '87a3c2743ee67c1e942d1006e89cdcb2', 'date': 'Thu, 26 Mar 2026 12:03:59 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfaU5MUHRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.QHyg3MtpJ-PaX9z3t0hPl31_hGIEIx82vbQvDzpIz9Q"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:57.638788" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:57.639071" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.475299" elapsed="0.163805"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:57.639164" elapsed="0.000036"/>
+</return>
+<msg time="2026-03-26T09:03:57.639298" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<var>${res}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.474774" elapsed="0.164538"/>
+</kw>
+<kw name="Validar Login Sucesso" owner="autenticacao">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.639715" elapsed="0.000108"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o login foi realizado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.639514" elapsed="0.000344"/>
+</kw>
+<kw name="Validar Contrato Login" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.640538" level="INFO">${json} = {'message': 'Login realizado com sucesso', 'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfaU5MUHRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY...</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.640142" elapsed="0.000412"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.640615" elapsed="0.000095"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>authorization</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.640763" elapsed="0.000074"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json['message']}</arg>
+<arg>Login realizado com sucesso</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.640889" elapsed="0.000335"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${json['authorization']}</arg>
+<arg>Bearer</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.641287" elapsed="0.000297"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.642029" level="INFO">Length is 210.</msg>
+<arg>${json['authorization']}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.641653" elapsed="0.000402"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida os elementos do contrato da resposta do login, verificando a presença de 'message' e 'authorization':</doc>
+<status status="PASS" start="2026-03-26T09:03:57.639995" elapsed="0.002092"/>
+</kw>
+<doc>Valida o contrato da resposta do login</doc>
+<status status="PASS" start="2026-03-26T09:03:57.302646" elapsed="0.339614"/>
+</test>
+<status status="PASS" start="2026-03-26T09:03:55.698437" elapsed="1.944887"/>
+</suite>
+<suite id="s1-s2" name="Carrinhos" source="C:\Users\danis\OneDrive\Documentos\Scholarship-AWS-AI-Software-Quality-Engineering-Fase02\Documents\Sprint 2\Semana 4\Challenge03\tests\carrinhos.robot">
+<kw name="Criar Sessao" owner="base" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:57.650418" level="INFO">Creating Session using : alias=serverest, url=https://compassuol.serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-26T09:03:57.650171" elapsed="0.000383"/>
+</kw>
+<doc>Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.649933" elapsed="0.000666"/>
+</kw>
+<test id="s1-s2-t1" name="CT-C01 Criar carrinho" line="13">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:57.651436" level="INFO">${random} = uzfeV</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.651124" elapsed="0.000342"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.651847" level="INFO">${email} = user_uzfeV@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.651549" elapsed="0.000325"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:57.651908" elapsed="0.000032"/>
+</return>
+<msg time="2026-03-26T09:03:57.652010" level="INFO">${email} = user_uzfeV@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.650980" elapsed="0.001043"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:57.653702" level="INFO">${random} = RZim</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.653574" elapsed="0.000147"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:57.654108" level="INFO">${body} = {'nome': 'User', 'email': 'user_uzfeV@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.653813" elapsed="0.000313"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:58.131782" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '101', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User", "email": "user_uzfeV@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:03:58.131917" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '186f073fdb242ae3ac6f66270b49b8f9', 'date': 'Thu, 26 Mar 2026 12:03:59 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "3nSUigQg1AzOjck1"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:58.131963" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:58.132263" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:57.654201" elapsed="0.478099"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:58.132350" elapsed="0.000028"/>
+</return>
+<arg>User</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.653323" elapsed="0.479127"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.133150" level="INFO">${body} = {'email': 'user_uzfeV@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.132905" elapsed="0.000261"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:58.320658" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_uzfeV@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:03:58.320720" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '4fc6efa9b32f73c1ac6f66270b49b199', 'date': 'Thu, 26 Mar 2026 12:03:59 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZwqziBUIFhGaNPfcdsyBIkrWSfveT-U"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:58.320760" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:58.321093" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.133235" elapsed="0.187881"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:58.321167" elapsed="0.000028"/>
+</return>
+<msg time="2026-03-26T09:03:58.321279" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.132696" elapsed="0.188597"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.322120" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZwqziBUIFhGaNPfcdsyBI...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.321756" elapsed="0.000380"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:03:58.322164" elapsed="0.000019"/>
+</return>
+<msg time="2026-03-26T09:03:58.322245" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZwqziBUIFhGaNPfcdsyBI...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.321575" elapsed="0.000682"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.323114" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZw...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.322914" elapsed="0.000216"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:03:58.323157" elapsed="0.000017"/>
+</return>
+<msg time="2026-03-26T09:03:58.323236" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZw...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.322776" elapsed="0.000473"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:58.323399" level="INFO">${produto} = sBiIp</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.323309" elapsed="0.000102"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.323719" level="INFO">${body} = {'nome': 'Produto sBiIp', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.323469" elapsed="0.000265"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:58.514798" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZwqziBUIFhGaNPfcdsyBIkrWSfveT-U', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto sBiIp", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:03:58.514899" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '5c92c37c48692d79ac6f66270b49bfea', 'date': 'Thu, 26 Mar 2026 12:04:00 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "lbHaOJ4vJ0Ozvcj8"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:58.515048" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:58.515499" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.323808" elapsed="0.191730"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:58.515602" elapsed="0.000041"/>
+</return>
+<msg time="2026-03-26T09:03:58.515823" level="INFO">${produto} = &lt;Response [201]&gt;</msg>
+<var>${produto}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.322595" elapsed="0.193250"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.516496" level="INFO">${produto_id} = lbHaOJ4vJ0Ozvcj8</msg>
+<var>${produto_id}</var>
+<arg>${produto.json()['_id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.515999" elapsed="0.000513"/>
+</kw>
+<kw name="Criar Carrinho" owner="carrinhos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.517355" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZw...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.517149" elapsed="0.000222"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:03:58.517400" elapsed="0.000020"/>
+</return>
+<msg time="2026-03-26T09:03:58.517486" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZw...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.517005" elapsed="0.000494"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.517744" level="INFO">${produto} = {'idProduto': 'lbHaOJ4vJ0Ozvcj8', 'quantidade': '1'}</msg>
+<var>${produto}</var>
+<arg>idProduto=${produto_id}</arg>
+<arg>quantidade=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.517567" elapsed="0.000191"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.517958" level="INFO">${lista} = [{'idProduto': 'lbHaOJ4vJ0Ozvcj8', 'quantidade': '1'}]</msg>
+<var>${lista}</var>
+<arg>${produto}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.517817" elapsed="0.000154"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.518184" level="INFO">${body} = {'produtos': [{'idProduto': 'lbHaOJ4vJ0Ozvcj8', 'quantidade': '1'}]}</msg>
+<var>${body}</var>
+<arg>produtos=${lista}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.518030" elapsed="0.000167"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:58.763266" level="INFO">POST Request : url=https://compassuol.serverest.dev/carrinhos 
+ path_url=/carrinhos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfdXpmZVZAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjYzOSwiZXhwIjoxNzc0NTI3MjM5fQ.zXMKNrpvWVUqZwqziBUIFhGaNPfcdsyBIkrWSfveT-U', 'Content-Length': '68', 'Content-Type': 'application/json'} 
+ body=b'{"produtos": [{"idProduto": "lbHaOJ4vJ0Ozvcj8", "quantidade": "1"}]}' 
+ </msg>
+<msg time="2026-03-26T09:03:58.763343" level="INFO">POST Response : url=https://compassuol.serverest.dev/carrinhos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '8115853358635b17ac6f66270b49b777', 'date': 'Thu, 26 Mar 2026 12:04:00 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "dDdKV0rNTPLugwIK"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:58.763388" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:58.763760" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/carrinhos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.518252" elapsed="0.245547"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:58.763874" elapsed="0.000047"/>
+</return>
+<msg time="2026-03-26T09:03:58.764029" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<arg>${produto_id}</arg>
+<doc>Cria um carrinho de compras utilizando um token de autenticação e um ID de produto, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.516794" elapsed="0.247249"/>
+</kw>
+<kw name="Validar Carrinho Criado" owner="carrinhos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.764502" elapsed="0.000117"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o carrinho foi criado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.764292" elapsed="0.000360"/>
+</kw>
+<doc>Testa a criação de um carrinho com um produto válido, token e permissão:</doc>
+<status status="PASS" start="2026-03-26T09:03:57.650635" elapsed="1.114115"/>
+</test>
+<test id="s1-s2-t2" name="CT-C02 Produto inválido" line="29">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:58.765614" level="INFO">${random} = KwTEn</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.765487" elapsed="0.000144"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.765907" level="INFO">${email} = user_KwTEn@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.765701" elapsed="0.000225"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:58.765973" elapsed="0.000025"/>
+</return>
+<msg time="2026-03-26T09:03:58.766066" level="INFO">${email} = user_KwTEn@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.765338" elapsed="0.000741"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:58.766648" level="INFO">${random} = MjFe</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.766542" elapsed="0.000120"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.766992" level="INFO">${body} = {'nome': 'User', 'email': 'user_KwTEn@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.766731" elapsed="0.000278"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:58.951623" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '101', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User", "email": "user_KwTEn@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:03:58.951684" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'b39fdaf339fa77d7ac6f66270b49b953', 'date': 'Thu, 26 Mar 2026 12:04:00 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "4WhFQ9sohvTSTVjO"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:58.951722" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:58.951957" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.767075" elapsed="0.184906"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:58.952038" elapsed="0.000043"/>
+</return>
+<arg>User</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.766356" elapsed="0.185809"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:58.952936" level="INFO">${body} = {'email': 'user_KwTEn@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.952661" elapsed="0.000292"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:59.139764" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_KwTEn@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:03:59.139821" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'f50fcd9baf7c55c8ac6f66270b49b26a', 'date': 'Thu, 26 Mar 2026 12:04:00 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAEK8mcNsONfqkEBBIq2goj2EZMmdyA8"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:59.139858" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:59.140126" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:58.953043" elapsed="0.187105"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:59.140197" elapsed="0.000026"/>
+</return>
+<msg time="2026-03-26T09:03:59.140312" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.952430" elapsed="0.187896"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.141044" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAEK8mcNsONfqkEBBIq2go...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.140692" elapsed="0.000367"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:03:59.141085" elapsed="0.000018"/>
+</return>
+<msg time="2026-03-26T09:03:59.141161" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAEK8mcNsONfqkEBBIq2go...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.140524" elapsed="0.000650"/>
+</kw>
+<kw name="Criar Carrinho" owner="carrinhos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.141895" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAE...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.141696" elapsed="0.000216"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:03:59.141938" elapsed="0.000015"/>
+</return>
+<msg time="2026-03-26T09:03:59.142013" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAE...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.141553" elapsed="0.000473"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.142271" level="INFO">${produto} = {'idProduto': 'BbgfO3IlXI4xIII8', 'quantidade': '1'}</msg>
+<var>${produto}</var>
+<arg>idProduto=${produto_id}</arg>
+<arg>quantidade=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.142090" elapsed="0.000197"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.142492" level="INFO">${lista} = [{'idProduto': 'BbgfO3IlXI4xIII8', 'quantidade': '1'}]</msg>
+<var>${lista}</var>
+<arg>${produto}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.142349" elapsed="0.000158"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.143012" level="INFO">${body} = {'produtos': [{'idProduto': 'BbgfO3IlXI4xIII8', 'quantidade': '1'}]}</msg>
+<var>${body}</var>
+<arg>produtos=${lista}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.142564" elapsed="0.000469"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:59.316917" level="INFO">POST Request : url=https://compassuol.serverest.dev/carrinhos 
+ path_url=/carrinhos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfS3dURW5AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MCwiZXhwIjoxNzc0NTI3MjQwfQ.vWoTZkHlYj5vAEK8mcNsONfqkEBBIq2goj2EZMmdyA8', 'Content-Length': '68', 'Content-Type': 'application/json'} 
+ body=b'{"produtos": [{"idProduto": "BbgfO3IlXI4xIII8", "quantidade": "1"}]}' 
+ </msg>
+<msg time="2026-03-26T09:03:59.316978" level="INFO">POST Response : url=https://compassuol.serverest.dev/carrinhos 
+ status=400, reason=Bad Request 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '03c0d4c24163b279ac6f66270b49be95', 'date': 'Thu, 26 Mar 2026 12:04:00 GMT', 'server': 'Google Frontend', 'Content-Length': '150'} 
+ body={
+    "message": "Produto não encontrado",
+    "item": {
+        "idProduto": "BbgfO3IlXI4xIII8",
+        "quantidade": 1,
+        "index": 0
+    }
+} 
+ </msg>
+<msg time="2026-03-26T09:03:59.317021" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:59.317277" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/carrinhos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.143138" elapsed="0.174162"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:59.317349" elapsed="0.000027"/>
+</return>
+<msg time="2026-03-26T09:03:59.317456" level="INFO">${res} = &lt;Response [400]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<arg>BbgfO3IlXI4xIII8</arg>
+<doc>Cria um carrinho de compras utilizando um token de autenticação e um ID de produto, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.141379" elapsed="0.176091"/>
+</kw>
+<kw name="Validar Produto Inválido" owner="carrinhos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>400</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.318017" elapsed="0.000100"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o produto é inválido, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.317830" elapsed="0.000320"/>
+</kw>
+<doc>Testa a criação de um carrinho utilizando um ID de produto inválido:</doc>
+<status status="PASS" start="2026-03-26T09:03:58.764998" elapsed="0.553264"/>
+</test>
+<test id="s1-s2-t3" name="CT-C03 Concluir uma compra" line="42">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:59.318966" level="INFO">${random} = ZnAnT</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.318863" elapsed="0.000119"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.319229" level="INFO">${email} = user_ZnAnT@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.319044" elapsed="0.000199"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:03:59.319270" elapsed="0.000020"/>
+</return>
+<msg time="2026-03-26T09:03:59.319350" level="INFO">${email} = user_ZnAnT@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.318733" elapsed="0.000629"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:59.319805" level="INFO">${random} = pPlX</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.319715" elapsed="0.000103"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.320129" level="INFO">${body} = {'nome': 'User', 'email': 'user_ZnAnT@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.319882" elapsed="0.000261"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:59.512221" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '101', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User", "email": "user_ZnAnT@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:03:59.512293" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'cd3da49860d5772aac6f66270b49b5ab', 'date': 'Thu, 26 Mar 2026 12:04:01 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "4tVwJsy1dDHT4aDO"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:59.512336" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:59.523084" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.320204" elapsed="0.202913"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:59.523171" elapsed="0.000030"/>
+</return>
+<arg>User</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.319541" elapsed="0.203732"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.523994" level="INFO">${body} = {'email': 'user_ZnAnT@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.523742" elapsed="0.000268"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:59.699954" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_ZnAnT@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:03:59.700028" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '32bb7d62a6390335ac6f66270b49bd6c', 'date': 'Thu, 26 Mar 2026 12:04:01 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4VP_ungmn6U"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:59.700075" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:59.700433" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.524078" elapsed="0.176380"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:59.700531" elapsed="0.000047"/>
+</return>
+<msg time="2026-03-26T09:03:59.700696" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.523505" elapsed="0.177205"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.701624" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.701233" elapsed="0.000407"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:03:59.701670" elapsed="0.000019"/>
+</return>
+<msg time="2026-03-26T09:03:59.701751" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.701045" elapsed="0.000719"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.702683" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.702466" elapsed="0.000233"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:03:59.702726" elapsed="0.000018"/>
+</return>
+<msg time="2026-03-26T09:03:59.702807" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.702315" elapsed="0.000505"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:03:59.702982" level="INFO">${produto} = ddBP9</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.702885" elapsed="0.000110"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.703274" level="INFO">${body} = {'nome': 'Produto ddBP9', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.703069" elapsed="0.000219"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:03:59.897630" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4VP_ungmn6U', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto ddBP9", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:03:59.897690" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '84e5b77d2db0105cac6f66270b49b1b1', 'date': 'Thu, 26 Mar 2026 12:04:01 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "dElSIxiZ44lRWaCp"
+} 
+ </msg>
+<msg time="2026-03-26T09:03:59.897726" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:03:59.898049" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.703348" elapsed="0.194733"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:03:59.898139" elapsed="0.000082"/>
+</return>
+<msg time="2026-03-26T09:03:59.898330" level="INFO">${produto} = &lt;Response [201]&gt;</msg>
+<var>${produto}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.702123" elapsed="0.196224"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.898973" level="INFO">${produto_id} = dElSIxiZ44lRWaCp</msg>
+<var>${produto_id}</var>
+<arg>${produto.json()['_id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.898522" elapsed="0.000468"/>
+</kw>
+<kw name="Criar Carrinho" owner="carrinhos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.899890" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.899567" elapsed="0.000345"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:03:59.899946" elapsed="0.000023"/>
+</return>
+<msg time="2026-03-26T09:03:59.900070" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.899410" elapsed="0.000676"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.900680" level="INFO">${produto} = {'idProduto': 'dElSIxiZ44lRWaCp', 'quantidade': '1'}</msg>
+<var>${produto}</var>
+<arg>idProduto=${produto_id}</arg>
+<arg>quantidade=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.900340" elapsed="0.000360"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.901123" level="INFO">${lista} = [{'idProduto': 'dElSIxiZ44lRWaCp', 'quantidade': '1'}]</msg>
+<var>${lista}</var>
+<arg>${produto}</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.900917" elapsed="0.000227"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:03:59.901590" level="INFO">${body} = {'produtos': [{'idProduto': 'dElSIxiZ44lRWaCp', 'quantidade': '1'}]}</msg>
+<var>${body}</var>
+<arg>produtos=${lista}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.901236" elapsed="0.000377"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:00.078900" level="INFO">POST Request : url=https://compassuol.serverest.dev/carrinhos 
+ path_url=/carrinhos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4VP_ungmn6U', 'Content-Length': '68', 'Content-Type': 'application/json'} 
+ body=b'{"produtos": [{"idProduto": "dElSIxiZ44lRWaCp", "quantidade": "1"}]}' 
+ </msg>
+<msg time="2026-03-26T09:04:00.078959" level="INFO">POST Response : url=https://compassuol.serverest.dev/carrinhos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '9dedb0ba1e9ef5764879d200a6bdbb34', 'date': 'Thu, 26 Mar 2026 12:04:01 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "cKbOQYUVaYfsZrI7"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:00.078995" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:00.079251" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/carrinhos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:03:59.901699" elapsed="0.177574"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:00.079333" elapsed="0.000027"/>
+</return>
+<msg time="2026-03-26T09:04:00.079444" level="INFO">${carrinho} = &lt;Response [201]&gt;</msg>
+<var>${carrinho}</var>
+<arg>${token}</arg>
+<arg>${produto_id}</arg>
+<doc>Cria um carrinho de compras utilizando um token de autenticação e um ID de produto, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.899187" elapsed="0.180271"/>
+</kw>
+<kw name="Concluir Compra" owner="carrinhos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:00.080658" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.080302" elapsed="0.000376"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:00.080712" elapsed="0.000021"/>
+</return>
+<msg time="2026-03-26T09:04:00.080803" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cn...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.079878" elapsed="0.000938"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:00.280700" level="INFO">DELETE Request : url=https://compassuol.serverest.dev/carrinhos/concluir-compra 
+ path_url=/carrinhos/concluir-compra 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWm5BblRAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MSwiZXhwIjoxNzc0NTI3MjQxfQ.MVvNz-Gvsma7cnwx39n0fTBFiI3tDf0_4VP_ungmn6U', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-03-26T09:04:00.280760" level="INFO">DELETE Response : url=https://compassuol.serverest.dev/carrinhos/concluir-compra 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'cd1a3b3d3d193eec4879d200a6bdb1d0', 'date': 'Thu, 26 Mar 2026 12:04:01 GMT', 'server': 'Google Frontend', 'Content-Length': '51'} 
+ body={
+    "message": "Registro excluído com sucesso"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:00.280801" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:00.281255" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/carrinhos/concluir-compra</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.080893" elapsed="0.200387"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:00.281329" elapsed="0.000029"/>
+</return>
+<msg time="2026-03-26T09:04:00.281441" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<doc>Conclui a compra do carrinho utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.079665" elapsed="0.201789"/>
+</kw>
+<kw name="Validar Compra Concluida" owner="carrinhos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.281792" elapsed="0.000103"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se a compra foi concluída com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.281618" elapsed="0.000310"/>
+</kw>
+<doc>Testa a conclusão de uma compra com sucesso:</doc>
+<status status="PASS" start="2026-03-26T09:03:59.318478" elapsed="0.963570"/>
+</test>
+<status status="PASS" start="2026-03-26T09:03:57.643941" elapsed="2.640521"/>
+</suite>
+<suite id="s1-s3" name="Produtos" source="C:\Users\danis\OneDrive\Documentos\Scholarship-AWS-AI-Software-Quality-Engineering-Fase02\Documents\Sprint 2\Semana 4\Challenge03\tests\produtos.robot">
+<kw name="Criar Sessao" owner="base" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:00.287696" level="INFO">Creating Session using : alias=serverest, url=https://compassuol.serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-26T09:04:00.287590" elapsed="0.000205"/>
+</kw>
+<doc>Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.287419" elapsed="0.000416"/>
+</kw>
+<test id="s1-s3-t1" name="CT-P01 Criar produto" line="11">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:00.288485" level="INFO">${random} = Yuvkr</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.288378" elapsed="0.000124"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:00.288732" level="INFO">${email} = user_Yuvkr@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.288564" elapsed="0.000182"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:00.288774" elapsed="0.000022"/>
+</return>
+<msg time="2026-03-26T09:04:00.288859" level="INFO">${email} = user_Yuvkr@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.288244" elapsed="0.000626"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:00.289488" level="INFO">${random} = MVTx</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.289393" elapsed="0.000114"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:00.289820" level="INFO">${body} = {'nome': 'Admin', 'email': 'user_Yuvkr@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.289572" elapsed="0.000263"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:01.250497" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Admin", "email": "user_Yuvkr@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:04:01.250653" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '39e2d0921cf179140594132f42bf34cf', 'date': 'Thu, 26 Mar 2026 12:04:02 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "XZAFEVOPsJfv5Pxs"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:01.250695" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:01.251223" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:00.290068" elapsed="0.961181"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:01.251347" elapsed="0.000032"/>
+</return>
+<arg>Admin</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.289206" elapsed="0.962251"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.252195" level="INFO">${body} = {'email': 'user_Yuvkr@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.251961" elapsed="0.000250"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:01.480951" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_Yuvkr@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:04:01.481019" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'c9756b2fe5bed4510594132f42bf36fc', 'date': 'Thu, 26 Mar 2026 12:04:03 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5CwDXZ2xLshrZeofiPWZQyL7iFgOaA"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:01.481061" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:01.481838" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.252275" elapsed="0.229585"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:01.481909" elapsed="0.000028"/>
+</return>
+<msg time="2026-03-26T09:04:01.482017" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.251747" elapsed="0.230283"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.482714" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5CwDXZ2xLshrZeofiPWZ...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.482366" elapsed="0.000363"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:04:01.482756" elapsed="0.000015"/>
+</return>
+<msg time="2026-03-26T09:04:01.482830" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5CwDXZ2xLshrZeofiPWZ...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.482193" elapsed="0.000650"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.483451" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.483254" elapsed="0.000214"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:01.483496" elapsed="0.000015"/>
+</return>
+<msg time="2026-03-26T09:04:01.483572" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.483124" elapsed="0.000461"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:01.483748" level="INFO">${produto} = m94Sx</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.483658" elapsed="0.000103"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.484045" level="INFO">${body} = {'nome': 'Produto m94Sx', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.483818" elapsed="0.000241"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:01.741905" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfWXV2a3JAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.SCmP6zcJKG6bE5CwDXZ2xLshrZeofiPWZQyL7iFgOaA', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto m94Sx", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:04:01.741998" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '90521fe1fc716b120594132f42bf3579', 'date': 'Thu, 26 Mar 2026 12:04:03 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "Ikvs4l69gi1CWi6u"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:01.742065" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:01.742413" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.484118" elapsed="0.258331"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:01.742509" elapsed="0.000038"/>
+</return>
+<msg time="2026-03-26T09:04:01.742644" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.482966" elapsed="0.259691"/>
+</kw>
+<kw name="Validar Produto Criado" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.743053" elapsed="0.000116"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o produto foi criado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.742855" elapsed="0.000346"/>
+</kw>
+<doc>Testa a criação de um produto com dados válidos e permissão:</doc>
+<status status="PASS" start="2026-03-26T09:04:00.287866" elapsed="1.455486"/>
+</test>
+<test id="s1-s3-t2" name="CT-P02 Criar produto com usuário comum" line="24">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:01.744179" level="INFO">${random} = bCyak</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.744056" elapsed="0.000140"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.744465" level="INFO">${email} = user_bCyak@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.744269" elapsed="0.000211"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:01.744509" elapsed="0.000025"/>
+</return>
+<msg time="2026-03-26T09:04:01.744598" level="INFO">${email} = user_bCyak@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.743906" elapsed="0.000706"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:01.745075" level="INFO">${random} = iduR</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.744977" elapsed="0.000112"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:01.745437" level="INFO">${body} = {'nome': 'User', 'email': 'user_bCyak@email.com', 'password': 'password123', 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.745157" elapsed="0.000296"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:02.001788" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "User", "email": "user_bCyak@email.com", "password": "password123", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:04:02.001846" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '446bce4282c7de0e0594132f42bf30e4', 'date': 'Thu, 26 Mar 2026 12:04:03 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "ZjOK0dFZKHeU4cy7"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:02.001883" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:02.002527" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:01.745525" elapsed="0.257028"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:02.002635" elapsed="0.000028"/>
+</return>
+<arg>User</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:01.744799" elapsed="0.257940"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.003413" level="INFO">${body} = {'email': 'user_bCyak@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.003163" elapsed="0.000268"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:02.226072" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_bCyak@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:04:02.226130" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '528ff55b42887c490594132f42bf3fb0', 'date': 'Thu, 26 Mar 2026 12:04:03 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1DJ-aVxwRM5sJ8YbMBmAsXujTwMMIk"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:02.226188" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:02.226744" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.003502" elapsed="0.223265"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:02.226824" elapsed="0.000027"/>
+</return>
+<msg time="2026-03-26T09:04:02.227102" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.002919" elapsed="0.224199"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.228490" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1DJ-aVxwRM5sJ8YbMBmA...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.228116" elapsed="0.000391"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:04:02.228538" elapsed="0.000023"/>
+</return>
+<msg time="2026-03-26T09:04:02.228630" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1DJ-aVxwRM5sJ8YbMBmA...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.227921" elapsed="0.000722"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.229354" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.229153" elapsed="0.000217"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:02.229400" elapsed="0.000017"/>
+</return>
+<msg time="2026-03-26T09:04:02.229479" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.229018" elapsed="0.000474"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:02.229651" level="INFO">${produto} = 9WW4n</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.229556" elapsed="0.000108"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.229934" level="INFO">${body} = {'nome': 'Produto 9WW4n', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.229728" elapsed="0.000219"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:02.416947" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfYkN5YWtAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0MywiZXhwIjoxNzc0NTI3MjQzfQ.x2aS5RmcEFQHK1DJ-aVxwRM5sJ8YbMBmAsXujTwMMIk', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto 9WW4n", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:04:02.417006" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=403, reason=Forbidden 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'd106262d1923d8330594132f42bf3406', 'date': 'Thu, 26 Mar 2026 12:04:04 GMT', 'server': 'Google Frontend', 'Content-Length': '56'} 
+ body={
+    "message": "Rota exclusiva para administradores"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:02.417062" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:02.417302" level="INFO">${response} = &lt;Response [403]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.230009" elapsed="0.187322"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:02.417381" elapsed="0.000030"/>
+</return>
+<msg time="2026-03-26T09:04:02.417498" level="INFO">${res} = &lt;Response [403]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.228848" elapsed="0.188664"/>
+</kw>
+<kw name="Validar Sem Permissao" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>403</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.417878" elapsed="0.000103"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se a criação do produto falhou devido à falta de permissão, atarvés do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.417700" elapsed="0.000317"/>
+</kw>
+<doc>Testa a criação de um produto utilizando um token de um usuário sem permissão (administrador=false):</doc>
+<status status="PASS" start="2026-03-26T09:04:01.743583" elapsed="0.674534"/>
+</test>
+<test id="s1-s3-t3" name="CT-P03 Excluir produto com ID inválido" line="37">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:02.418833" level="INFO">${random} = LyVaI</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.418729" elapsed="0.000118"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.419091" level="INFO">${email} = user_LyVaI@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.418911" elapsed="0.000195"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:02.419132" elapsed="0.000031"/>
+</return>
+<msg time="2026-03-26T09:04:02.419225" level="INFO">${email} = user_LyVaI@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.418592" elapsed="0.000645"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:02.419681" level="INFO">${random} = verL</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.419587" elapsed="0.000108"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.420107" level="INFO">${body} = {'nome': 'Admin', 'email': 'user_LyVaI@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.419758" elapsed="0.000366"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:02.632348" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Admin", "email": "user_LyVaI@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:04:02.632407" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '9ec34afe9fc81df50594132f42bf3c5b', 'date': 'Thu, 26 Mar 2026 12:04:04 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "iXnV4l1T0yq54QAS"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:02.632445" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:02.632937" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.420385" elapsed="0.212582"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:02.633019" elapsed="0.000032"/>
+</return>
+<arg>Admin</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.419414" elapsed="0.213718"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.633788" level="INFO">${body} = {'email': 'user_LyVaI@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.633541" elapsed="0.000266"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:02.924329" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_LyVaI@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:04:02.924390" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '4934532247d33a1f0594132f42bf354e', 'date': 'Thu, 26 Mar 2026 12:04:04 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrnR7a3zRyzvDdsOqoaEztHb3wIQ_pKM"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:02.924446" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:02.924684" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.633895" elapsed="0.290817"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:02.924761" elapsed="0.000028"/>
+</return>
+<msg time="2026-03-26T09:04:02.924875" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.633332" elapsed="0.291558"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.925610" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrnR7a3zRyzvDdsOqoaEzt...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.925248" elapsed="0.000379"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:04:02.925656" elapsed="0.000016"/>
+</return>
+<msg time="2026-03-26T09:04:02.925733" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrnR7a3zRyzvDdsOqoaEzt...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.925078" elapsed="0.000668"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.926396" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrn...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.926200" elapsed="0.000211"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:02.926437" elapsed="0.000016"/>
+</return>
+<msg time="2026-03-26T09:04:02.926512" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrn...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.926064" elapsed="0.000460"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:02.926676" level="INFO">${produto} = 0kYit</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.926588" elapsed="0.000100"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:02.926942" level="INFO">${body} = {'nome': 'Produto 0kYit', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.926748" elapsed="0.000207"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.178628" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrnR7a3zRyzvDdsOqoaEztHb3wIQ_pKM', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto 0kYit", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:04:03.178692" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '2f696e1341a8eb1a0594132f42bf3cba', 'date': 'Thu, 26 Mar 2026 12:04:04 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "dt7i2IEXkzUxYwE8"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:03.178735" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:03.179694" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:02.927014" elapsed="0.252713"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:03.179784" elapsed="0.000040"/>
+</return>
+<msg time="2026-03-26T09:04:03.179920" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.925898" elapsed="0.254036"/>
+</kw>
+<kw name="Validar Produto Criado" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.180421" elapsed="0.000111"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o produto foi criado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.180210" elapsed="0.000357"/>
+</kw>
+<kw name="Excluir Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.181386" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrn...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.181174" elapsed="0.000388"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:03.181598" elapsed="0.000026"/>
+</return>
+<msg time="2026-03-26T09:04:03.181696" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrn...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.181036" elapsed="0.000679"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.371344" level="INFO">DELETE Request : url=https://compassuol.serverest.dev/produtos/UugfO0IlXp0x2Au1 
+ path_url=/produtos/UugfO0IlXp0x2Au1 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfTHlWYUlAZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NCwiZXhwIjoxNzc0NTI3MjQ0fQ.SXoNnSwMnxszrnR7a3zRyzvDdsOqoaEztHb3wIQ_pKM', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-03-26T09:04:03.371412" level="INFO">DELETE Response : url=https://compassuol.serverest.dev/produtos/UugfO0IlXp0x2Au1 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '8cd2ea376081bedb0594132f42bf3825', 'date': 'Thu, 26 Mar 2026 12:04:04 GMT', 'server': 'Google Frontend', 'Content-Length': '46'} 
+ body={
+    "message": "Nenhum registro excluído"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:03.371454" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:03.371705" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos/${produto_id}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.181779" elapsed="0.189954"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:03.371791" elapsed="0.000032"/>
+</return>
+<msg time="2026-03-26T09:04:03.371916" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<arg>UugfO0IlXp0x2Au1</arg>
+<doc>Exclui um produto utilizando token de autenticação e o ID do produto, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.180845" elapsed="0.191085"/>
+</kw>
+<kw name="Validar Exclusão Produto Inválido" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.372311" elapsed="0.000100"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida a exclusão do produto com ID inválido, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.372123" elapsed="0.000325"/>
+</kw>
+<doc>Testa a exclusão de um produto utilizando um ID inválido:</doc>
+<status status="PASS" start="2026-03-26T09:04:02.418326" elapsed="0.954227"/>
+</test>
+<test id="s1-s3-t4" name="CT-P04 Contrato produto" line="53">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:03.374642" level="INFO">${random} = nTQsn</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.374508" elapsed="0.000154"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.375058" level="INFO">${email} = user_nTQsn@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.374821" elapsed="0.000255"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:03.375107" elapsed="0.000027"/>
+</return>
+<msg time="2026-03-26T09:04:03.375210" level="INFO">${email} = user_nTQsn@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.374324" elapsed="0.000899"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:03.375871" level="INFO">${random} = lmFa</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.375747" elapsed="0.000146"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.376337" level="INFO">${body} = {'nome': 'Admin', 'email': 'user_nTQsn@email.com', 'password': 'password123', 'administrador': 'true'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.375980" elapsed="0.000377"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.546548" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Admin", "email": "user_nTQsn@email.com", "password": "password123", "administrador": "true"}' 
+ </msg>
+<msg time="2026-03-26T09:04:03.546608" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'a7d9e8d552a2b0600594132f42bf342a', 'date': 'Thu, 26 Mar 2026 12:04:05 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "9uHunjb5PMJvESG1"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:03.546648" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:03.546942" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.376428" elapsed="0.170541"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:03.547037" elapsed="0.000030"/>
+</return>
+<arg>Admin</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>true</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.375532" elapsed="0.171609"/>
+</kw>
+<kw name="Realizar Login" owner="autenticacao">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.547855" level="INFO">${body} = {'email': 'user_nTQsn@email.com', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.547612" elapsed="0.000261"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.749380" level="INFO">POST Request : url=https://compassuol.serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '60', 'Content-Type': 'application/json'} 
+ body=b'{"email": "user_nTQsn@email.com", "password": "password123"}' 
+ </msg>
+<msg time="2026-03-26T09:04:03.749442" level="INFO">POST Response : url=https://compassuol.serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '5d7d386bec6eebae0594132f42bf347d', 'date': 'Thu, 26 Mar 2026 12:04:05 GMT', 'server': 'Google Frontend', 'Content-Length': '283'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemfYCSJopigDATKwwzaF2nO2JyxCS2F4"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:03.749482" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:03.749727" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.547942" elapsed="0.201820"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:03.749817" elapsed="0.000031"/>
+</return>
+<msg time="2026-03-26T09:04:03.749943" level="INFO">${login} = &lt;Response [200]&gt;</msg>
+<var>${login}</var>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<doc>Realiza o login na API ServeRest utilizando email e senha, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.547394" elapsed="0.202563"/>
+</kw>
+<kw name="Obter Token" owner="autenticacao">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.750883" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemfYCSJopigDATKwwzaF2n...</msg>
+<var>${token}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.750419" elapsed="0.000489"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2026-03-26T09:04:03.750946" elapsed="0.000024"/>
+</return>
+<msg time="2026-03-26T09:04:03.751044" level="INFO">${token} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemfYCSJopigDATKwwzaF2n...</msg>
+<var>${token}</var>
+<arg>${login}</arg>
+<doc>Extrai o token de autenticação da resposta do login:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.750205" elapsed="0.000853"/>
+</kw>
+<kw name="Criar Produto" owner="produtos">
+<kw name="Criar Header Com Token" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.751863" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemf...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.751634" elapsed="0.000246"/>
+</kw>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2026-03-26T09:04:03.751911" elapsed="0.000021"/>
+</return>
+<msg time="2026-03-26T09:04:03.751998" level="INFO">${headers} = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemf...</msg>
+<var>${headers}</var>
+<arg>${token}</arg>
+<doc>Cria um header de autenticação utilizando o token fornecido:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.751482" elapsed="0.000528"/>
+</kw>
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:03.752187" level="INFO">${produto} = e4QIm</msg>
+<var>${produto}</var>
+<arg>5</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.752076" elapsed="0.000126"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.752490" level="INFO">${body} = {'nome': 'Produto e4QIm', 'preco': '100', 'descricao': 'Teste', 'quantidade': '10'}</msg>
+<var>${body}</var>
+<arg>nome=Produto ${produto}</arg>
+<arg>preco=100</arg>
+<arg>descricao=Teste</arg>
+<arg>quantidade=10</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.752272" elapsed="0.000236"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.946501" level="INFO">POST Request : url=https://compassuol.serverest.dev/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJfblRRc25AZW1haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEyMyIsImlhdCI6MTc3NDUyNjY0NSwiZXhwIjoxNzc0NTI3MjQ1fQ.GfEbuupdSxWemfYCSJopigDATKwwzaF2nO2JyxCS2F4', 'Content-Length': '83', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "Produto e4QIm", "preco": "100", "descricao": "Teste", "quantidade": "10"}' 
+ </msg>
+<msg time="2026-03-26T09:04:03.946557" level="INFO">POST Response : url=https://compassuol.serverest.dev/produtos 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '56dc14fc59f029b40594132f42bf3033', 'date': 'Thu, 26 Mar 2026 12:04:05 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "bNyAqcwtJ6ywXDMG"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:03.946609" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:03.946988" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.752572" elapsed="0.194443"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:03.947067" elapsed="0.000029"/>
+</return>
+<msg time="2026-03-26T09:04:03.947183" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>${token}</arg>
+<doc>Cria um produto utilizando um token de autenticação, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.751289" elapsed="0.195907"/>
+</kw>
+<kw name="Validar Produto Criado" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.947534" elapsed="0.000111"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o produto foi criado com sucesso, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.947360" elapsed="0.000318"/>
+</kw>
+<kw name="Validar Contrato Produto" owner="produtos">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.947949" elapsed="0.000081"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.948438" level="INFO">${json} = {'message': 'Cadastro realizado com sucesso', '_id': 'bNyAqcwtJ6ywXDMG'}</msg>
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.948086" elapsed="0.000369"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.948522" elapsed="0.000093"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${json}</arg>
+<arg>_id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.948673" elapsed="0.000069"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json['message']}</arg>
+<arg>Cadastro realizado com sucesso</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.948801" elapsed="0.000477"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.949698" level="INFO">Length is 16.</msg>
+<arg>${json['_id']}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.949352" elapsed="0.000371"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida os elementos do contrato da resposta da criação de um produto, verificando a presença de 'message' e '_id' na resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.947805" elapsed="0.001949"/>
+</kw>
+<doc>Valida o contrato da resposta da criação de um produto:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.373925" elapsed="0.576054"/>
+</test>
+<status status="PASS" start="2026-03-26T09:04:00.284981" elapsed="3.665419"/>
+</suite>
+<suite id="s1-s4" name="Usuarios" source="C:\Users\danis\OneDrive\Documentos\Scholarship-AWS-AI-Software-Quality-Engineering-Fase02\Documents\Sprint 2\Semana 4\Challenge03\tests\usuarios.robot">
+<kw name="Criar Sessao" owner="base" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:03.953243" level="INFO">Creating Session using : alias=serverest, url=https://compassuol.serverest.dev, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>serverest</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953168" elapsed="0.000168"/>
+</kw>
+<doc>Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953067" elapsed="0.000306"/>
+</kw>
+<test id="s1-s4-t1" name="CT-U01 Criar usuário" line="10">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:03.953852" level="INFO">${random} = YfMpZ</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953754" elapsed="0.000113"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.954186" level="INFO">${email} = user_YfMpZ@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953972" elapsed="0.000233"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:03.954236" elapsed="0.000023"/>
+</return>
+<msg time="2026-03-26T09:04:03.954327" level="INFO">${email} = user_YfMpZ@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953626" elapsed="0.000716"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:03.954853" level="INFO">${random} = nXSZ</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.954749" elapsed="0.000118"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:03.955229" level="INFO">${body} = {'nome': 'user', 'email': 'user_YfMpZ@email.com', 'password': 'password123', 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.954937" elapsed="0.000308"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:04.850663" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "user", "email": "user_YfMpZ@email.com", "password": "password123", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:04:04.850735" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'f4d9dec0fbd890eb91c83d10ef037233', 'date': 'Thu, 26 Mar 2026 12:04:06 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "hTW85XApoy56DPgr"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:04.850795" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:04.851015" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:03.955322" elapsed="0.895719"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:04.851096" elapsed="0.000037"/>
+</return>
+<msg time="2026-03-26T09:04:04.851224" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>user</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.954560" elapsed="0.896678"/>
+</kw>
+<kw name="Validar Usuario Cadastrado" owner="usuarios">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.851757" elapsed="0.000158"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se o usuário foi criado com sucesso, ataravés do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:04.851444" elapsed="0.000516"/>
+</kw>
+<doc>Testa a criação de um usuário com dados válidos:</doc>
+<status status="PASS" start="2026-03-26T09:04:03.953402" elapsed="0.898727"/>
+</test>
+<test id="s1-s4-t2" name="CT-U02 Criar usuário com email duplicado" line="18">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:04.852991" level="INFO">${random} = QEUwL</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.852867" elapsed="0.000150"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:04.853277" level="INFO">${email} = user_QEUwL@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.853087" elapsed="0.000203"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:04.853317" elapsed="0.000022"/>
+</return>
+<msg time="2026-03-26T09:04:04.853402" level="INFO">${email} = user_QEUwL@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:04.852716" elapsed="0.000698"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:04.853879" level="INFO">${random} = Fnke</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.853786" elapsed="0.000107"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:04.854207" level="INFO">${body} = {'nome': 'user', 'email': 'user_QEUwL@email.com', 'password': 'password123', 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.853955" elapsed="0.000266"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:05.028483" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '102', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "user", "email": "user_QEUwL@email.com", "password": "password123", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:04:05.028538" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'a03cb46026cc9c7b91c83d10ef037f57', 'date': 'Thu, 26 Mar 2026 12:04:06 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "xEanMrKVRhXSwDgw"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:05.028574" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:05.029024" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:04.854285" elapsed="0.174761"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:05.029094" elapsed="0.000028"/>
+</return>
+<arg>user</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:04.853609" elapsed="0.175581"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:05.029658" level="INFO">${random} = PPqO</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.029553" elapsed="0.000118"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:05.030078" level="INFO">${body} = {'nome': 'user2', 'email': 'user_QEUwL@email.com', 'password': 'password123', 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.029814" elapsed="0.000280"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:05.202808" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '103', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "user2", "email": "user_QEUwL@email.com", "password": "password123", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:04:05.202866" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=400, reason=Bad Request 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '0ebae68a51573beb91c83d10ef037c2f', 'date': 'Thu, 26 Mar 2026 12:04:06 GMT', 'server': 'Google Frontend', 'Content-Length': '53'} 
+ body={
+    "message": "Este email já está sendo usado"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:05.202942" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:05.203203" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.030158" elapsed="0.173068"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:05.203275" elapsed="0.000029"/>
+</return>
+<msg time="2026-03-26T09:04:05.203387" level="INFO">${res} = &lt;Response [400]&gt;</msg>
+<var>${res}</var>
+<arg>user2</arg>
+<arg>${email}</arg>
+<arg>${SENHA_USER}</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.029356" elapsed="0.174044"/>
+</kw>
+<kw name="Validar Email Duplicado" owner="usuarios">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>400</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.203764" elapsed="0.000097"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se a criação do usuário falhou devido a um email duplicado, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.203591" elapsed="0.000303"/>
+</kw>
+<doc>Testa a criação de um usuário utilizando um email duplicado:</doc>
+<status status="PASS" start="2026-03-26T09:04:04.852378" elapsed="0.351726"/>
+</test>
+<test id="s1-s4-t3" name="CT-U03 Cadastro com campos vazios" line="27">
+<kw name="Gerar Email Aleatorio" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:05.204887" level="INFO">${random} = JqjBC</msg>
+<var>${random}</var>
+<arg>5</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.204778" elapsed="0.000125"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-03-26T09:04:05.205147" level="INFO">${email} = user_JqjBC@email.com</msg>
+<var>${email}</var>
+<arg>user_${random}@email.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.204966" elapsed="0.000195"/>
+</kw>
+<return>
+<value>${email}</value>
+<status status="PASS" start="2026-03-26T09:04:05.205188" elapsed="0.000020"/>
+</return>
+<msg time="2026-03-26T09:04:05.205269" level="INFO">${email} = user_JqjBC@email.com</msg>
+<var>${email}</var>
+<doc>Gera um email aleatório para uso nos testes de criação de usuários:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.204651" elapsed="0.000630"/>
+</kw>
+<kw name="Criar Usuario" owner="usuarios">
+<kw name="Generate Random String" owner="String">
+<msg time="2026-03-26T09:04:05.205774" level="INFO">${random} = DRUJ</msg>
+<var>${random}</var>
+<arg>4</arg>
+<arg>[LETTERS]</arg>
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.205680" elapsed="0.000107"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-03-26T09:04:05.206085" level="INFO">${body} = {'nome': "''", 'email': 'user_JqjBC@email.com', 'password': "''", 'administrador': 'false'}</msg>
+<var>${body}</var>
+<arg>nome=${nome}</arg>
+<arg>email=${email}</arg>
+<arg>password=${senha}</arg>
+<arg>administrador=${admin}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.205848" elapsed="0.000251"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-03-26T09:04:05.373929" level="INFO">POST Request : url=https://compassuol.serverest.dev/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '91', 'Content-Type': 'application/json'} 
+ body=b'{"nome": "\'\'", "email": "user_JqjBC@email.com", "password": "\'\'", "administrador": "false"}' 
+ </msg>
+<msg time="2026-03-26T09:04:05.373984" level="INFO">POST Response : url=https://compassuol.serverest.dev/usuarios 
+ status=201, reason=Created 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'edd9c0a7a559058f91c83d10ef037cd5', 'date': 'Thu, 26 Mar 2026 12:04:06 GMT', 'server': 'Google Frontend', 'Content-Length': '82'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "fSXj4YTDm2ZpjGJZ"
+} 
+ </msg>
+<msg time="2026-03-26T09:04:05.374021" level="INFO">C:\Users\danis\AppData\Local\Programs\Python\Python314\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'compassuol.serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2026-03-26T09:04:05.374468" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.206159" elapsed="0.168331"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2026-03-26T09:04:05.374536" elapsed="0.000028"/>
+</return>
+<msg time="2026-03-26T09:04:05.374650" level="INFO">${res} = &lt;Response [201]&gt;</msg>
+<var>${res}</var>
+<arg>''</arg>
+<arg>${email}</arg>
+<arg>''</arg>
+<arg>false</arg>
+<doc>Cria um usuário utilizando um nome, email, senha e status de administrador, retornando a resposta da requisição:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.205518" elapsed="0.169246"/>
+</kw>
+<kw name="Validar Erro Campos Obrigatórios" owner="usuarios">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2026-03-26T09:04:05.375117" elapsed="0.000099"/>
+</kw>
+<arg>${res}</arg>
+<doc>Valida se a criação do usuário falhou devido à ausência de campos obrigatórios, através do status code da resposta:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.374950" elapsed="0.000299"/>
+</kw>
+<doc>Testa a criação de um usuário contendo campos com strings vazias:</doc>
+<status status="PASS" start="2026-03-26T09:04:05.204339" elapsed="0.170994"/>
+</test>
+<status status="PASS" start="2026-03-26T09:04:03.950869" elapsed="1.424828"/>
+</suite>
+<status status="PASS" start="2026-03-26T09:03:55.673050" elapsed="9.703134"/>
+</suite>
+<statistics>
+<total>
+<stat pass="13" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="13" fail="0" skip="0">Tests</stat>
+<stat name="Autenticacao" id="s1-s1" pass="3" fail="0" skip="0">Tests.Autenticacao</stat>
+<stat name="Carrinhos" id="s1-s2" pass="3" fail="0" skip="0">Tests.Carrinhos</stat>
+<stat name="Produtos" id="s1-s3" pass="4" fail="0" skip="0">Tests.Produtos</stat>
+<stat name="Usuarios" id="s1-s4" pass="3" fail="0" skip="0">Tests.Usuarios</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
