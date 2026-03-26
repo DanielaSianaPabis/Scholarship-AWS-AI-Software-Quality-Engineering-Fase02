@@ -16,6 +16,7 @@ CT-A01 Login válido
     ${res}=    Realizar Login    ${email}    ${SENHA_USER}
     Validar Login Sucesso    ${res}
 
+
 CT-A02 Login inválido
     [Documentation]    Testa o login com credenciais inválidas (senha incorreta)
     
@@ -24,6 +25,7 @@ CT-A02 Login inválido
 
     ${res}=    Realizar Login    ${email}    senha_incorreta
     Validar Login Invalido    ${res}
+
 
 CT-A03 Contrato login
     [Documentation]    Valida o contrato da resposta do login

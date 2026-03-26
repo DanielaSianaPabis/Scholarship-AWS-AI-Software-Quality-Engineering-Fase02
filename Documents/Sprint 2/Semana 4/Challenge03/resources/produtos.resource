@@ -1,8 +1,6 @@
 [Documentation]   Recurso de Produtos para a API ServeRest, contendo as keywords necessárias para aplicação nos testes
 
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
 Library    String
 Resource   ../resources/base.resource 
 
@@ -61,7 +59,7 @@ Validar Sem Permissao
     Status Should Be    403    ${response}
 
 
-Validar Contrato Produto
+Validar Contrato Produto  
     [Documentation]    Valida os elementos do contrato da resposta da criação de um produto, verificando a presença de 'message' e '_id' na resposta:
     [Arguments]    ${response}
 

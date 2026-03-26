@@ -14,6 +14,7 @@ CT-U01 Criar usuário
     ${res}=    Criar Usuario    user    ${email}    ${SENHA_USER}    false
     Validar Usuario Cadastrado    ${res}
 
+
 CT-U02 Criar usuário com email duplicado
     [Documentation]    Testa a criação de um usuário utilizando um email duplicado:
 
@@ -21,6 +22,7 @@ CT-U02 Criar usuário com email duplicado
     Criar Usuario    user    ${email}    ${SENHA_USER}    false
     ${res}=    Criar Usuario    user2    ${email}    ${SENHA_USER}    false
     Validar Email Duplicado    ${res}
+
 
 CT-U03 Cadastro com campos vazios
     [Documentation]    Testa a criação de um usuário contendo campos com strings vazias:

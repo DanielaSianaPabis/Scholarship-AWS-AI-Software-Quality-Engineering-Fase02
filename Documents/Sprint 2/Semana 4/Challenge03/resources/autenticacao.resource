@@ -1,8 +1,6 @@
 [Documentation]   Recurso de Autenticação para a API ServeRest, contendo as keywords necessárias para aplicação nos testes
 
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
 Resource   ../variables/variables.robot
 Resource   base.resource
 

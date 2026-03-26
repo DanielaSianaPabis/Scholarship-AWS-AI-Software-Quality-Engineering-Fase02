@@ -34,7 +34,7 @@ CT-P02 Criar produto com usuário comum
     Validar Sem Permissao    ${res}
 
 
-CT-P04 Excluir produto com ID inválido
+CT-P03 Excluir produto com ID inválido
     [Documentation]    Testa a exclusão de um produto utilizando um ID inválido:
 
     ${email}=    Gerar Email Aleatorio
@@ -46,7 +46,7 @@ CT-P04 Excluir produto com ID inválido
     ${res}=    Criar Produto    ${token}
     Validar Produto Criado    ${res}
     
-    ${res}=    Excluir Produto   ${token}    UugfO0IlXp0xMFN2
+    ${res}=    Excluir Produto   ${token}    UugfO0IlXp0x2Au1
     Validar Exclusão Produto Inválido    ${res}
 
 
@@ -62,3 +62,4 @@ CT-P04 Contrato produto
     ${res}=    Criar Produto    ${token}
     Validar Produto Criado    ${res}
     Validar Contrato Produto    ${res}
+

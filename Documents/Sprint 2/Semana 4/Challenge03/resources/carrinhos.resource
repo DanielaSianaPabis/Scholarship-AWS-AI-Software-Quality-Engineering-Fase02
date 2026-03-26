@@ -1,8 +1,6 @@
 [Documentation]   Recurso de Carrinhos para a API ServeRest, contendo as keywords necessárias para aplicação nos testes
 
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
 Resource   base.resource
 
 *** Keywords ***
@@ -54,7 +52,7 @@ Validar Carrinho Criado
     Status Should Be    201    ${response}
 
 
-Validar Produto Inválido
+Validar Produto Inválido 
     [Documentation]    Valida se o produto é inválido, através do status code da resposta:
 
     [Arguments]    ${response}

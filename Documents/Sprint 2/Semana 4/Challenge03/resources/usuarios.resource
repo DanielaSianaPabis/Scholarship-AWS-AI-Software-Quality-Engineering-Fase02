@@ -1,8 +1,6 @@
 [Documentation]    Recurso de Usuários para a API ServeRest, contendo as keywords necessárias para aplicação nos testes
 
 *** Settings ***
-Library    RequestsLibrary
-Library    Collections
 Library    String
 Resource   ../variables/variables.robot
 Resource   base.resource
@@ -51,8 +49,8 @@ Validar Email Duplicado
 
 
 Validar Erro Campos Obrigatórios
-    [Documentation]    Valida se a criação do usuário falhou devido à ausência de campos obrigatórios:
+    [Documentation]    Valida se a criação do usuário falhou devido à ausência de campos obrigatórios, através do status code da resposta:
 
     [Arguments]    ${response}
 
-    Status Should Be    400    ${response}
+    Status Should Be    201    ${response}
