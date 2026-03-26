@@ -3,10 +3,10 @@ __pycache__/
 *.py[cod]
 
 # Robot Framework:
-results/
-output.xml
-log.html
-report.html
+#results/
+#output.xml
+#log.html
+#report.html
 
 # Visual Studio Code:
 .vscode/
