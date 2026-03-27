@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Carrinho Response Schema",
+  "description": "Schema de validação para resposta de criação de carrinho",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "enum": ["Cadastro realizado com sucesso"]
+    },
+    "_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]{16}$",
+      "description": "ID único do carrinho com 16 caracteres alfanuméricos"
+    }
+  },
+  "required": ["message", "_id"],
+  "additionalProperties": false
+}

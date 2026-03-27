@@ -6,6 +6,7 @@ Resource   ../variables/variables.robot
 Resource   base.resource
 
 *** Keywords ***
+
 Gerar Email Aleatorio
     [Documentation]    Gera um email aleatório para uso nos testes de criação de usuários:
 
@@ -18,7 +19,6 @@ Criar Usuario
 
     [Arguments]    ${nome}    ${email}    ${senha}    ${admin}
 
-    ${random}=    Generate Random String    4     [LETTERS]
     ${body}=    Create Dictionary
     ...    nome=${nome}
     ...    email=${email}
@@ -32,25 +32,3 @@ Criar Usuario
     ...    expected_status=any
 
     RETURN    ${response}
-
-
-Validar Usuario Cadastrado
-    [Documentation]    Valida se o usuário foi criado com sucesso, ataravés do status code da resposta:
-
-    [Arguments]    ${response}
-    Status Should Be    201    ${response}
-
-
-Validar Email Duplicado
-    [Documentation]    Valida se a criação do usuário falhou devido a um email duplicado, através do status code da resposta:
-
-    [Arguments]    ${response}
-    Status Should Be    400    ${response}
-
-
-Validar Erro Campos Obrigatórios
-    [Documentation]    Valida se a criação do usuário falhou devido à ausência de campos obrigatórios, através do status code da resposta:
-
-    [Arguments]    ${response}
-
-    Status Should Be    201    ${response}

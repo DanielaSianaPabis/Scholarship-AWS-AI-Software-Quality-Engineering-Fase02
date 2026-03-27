@@ -4,10 +4,11 @@
 Resource   base.resource
 
 *** Keywords ***
-Criar Carrinho  
-    [Documentation]    Cria um carrinho de compras utilizando um token de autenticação e um ID de produto, retornando a resposta da requisição:
 
-    [Arguments]    ${token}    ${produto_id}
+Criar Carrinho
+    [Documentation]    Cria um carrinho de compras utilizando um token de autenticação e um ID de produto, validando o status esperado:
+
+    [Arguments]    ${token}    ${produto_id}    ${status_esperado}=201
     ${headers}=    Criar Header Com Token    ${token}
 
     ${produto}=    Create Dictionary
@@ -26,13 +27,14 @@ Criar Carrinho
     ...    headers=${headers}
     ...    expected_status=any
 
+    Status Should Be    ${status_esperado}    ${response}
     RETURN    ${response}
 
 
 Concluir Compra
-    [Documentation]    Conclui a compra do carrinho utilizando um token de autenticação, retornando a resposta da requisição:
+    [Documentation]    Conclui a compra do carrinho utilizando um token de autenticação, validando o status esperado:
 
-    [Arguments]    ${token}
+    [Arguments]    ${token}    ${status_esperado}=200
 
     ${headers}=    Criar Header Com Token    ${token}
 
@@ -42,26 +44,7 @@ Concluir Compra
     ...    headers=${headers}
     ...    expected_status=any
 
+    Status Should Be    ${status_esperado}    ${response}
     RETURN    ${response}
 
 
-Validar Carrinho Criado
-    [Documentation]    Valida se o carrinho foi criado com sucesso, através do status code da resposta:
-    
-    [Arguments]    ${response}
-    Status Should Be    201    ${response}
-
-
-Validar Produto Inválido 
-    [Documentation]    Valida se o produto é inválido, através do status code da resposta:
-
-    [Arguments]    ${response}
-    Status Should Be    400    ${response}
-
-
-Validar Compra Concluida
-    [Documentation]    Valida se a compra foi concluída com sucesso, através do status code da resposta:
-
-    [Arguments]    ${response}
-
-    Status Should Be    200    ${response}
