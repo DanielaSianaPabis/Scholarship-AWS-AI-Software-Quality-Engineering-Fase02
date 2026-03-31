@@ -9,57 +9,34 @@ Suite Setup    Criar Sessao
 
 *** Test Cases ***
 CT-P01 Criar produto
+    [Tags]    produtos    criacao    smoke
     [Documentation]    Testa a criação de um produto com dados válidos e permissão:
 
-    ${email}=    Gerar Email Aleatorio
-    Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
+    ${token}=    Criar Usuario E Obter Token    Admin    true
+    Criar Produto    ${token}
 
-    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
-    ${token}=    Obter Token    ${login}
-
-    ${res}=    Criar Produto    ${token}
-    Validar Produto Criado    ${res}
-    
 
 CT-P02 Criar produto com usuário comum
+    [Tags]    produtos    validacao
     [Documentation]    Testa a criação de um produto utilizando um token de um usuário sem permissão (administrador=false):
 
-    ${email}=    Gerar Email Aleatorio
-    Criar Usuario    User    ${email}    ${SENHA_USER}    false
-
-    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
-    ${token}=    Obter Token    ${login}
-
-    ${res}=    Criar Produto    ${token}
-    Validar Sem Permissao    ${res}
+    ${token}=    Criar Usuario E Obter Token    User    false
+    Criar Produto    ${token}    403
 
 
 CT-P03 Excluir produto com ID inválido
+    [Tags]    produtos    exclusao
     [Documentation]    Testa a exclusão de um produto utilizando um ID inválido:
 
-    ${email}=    Gerar Email Aleatorio
-    Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
-
-    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
-    ${token}=    Obter Token    ${login}
-
-    ${res}=    Criar Produto    ${token}
-    Validar Produto Criado    ${res}
-    
-    ${res}=    Excluir Produto   ${token}    UugfO0IlXp0x2Au1
-    Validar Exclusão Produto Inválido    ${res}
+    ${token}=    Criar Usuario E Obter Token    Admin    true
+    Criar Produto    ${token}
+    Excluir Produto    ${token}    UugfO0IlXp0x2Au1
 
 
 CT-P04 Contrato produto
+    [Tags]    produtos    contrato
     [Documentation]    Valida o contrato da resposta da criação de um produto:
 
-    ${email}=    Gerar Email Aleatorio
-    Criar Usuario    Admin    ${email}    ${SENHA_USER}    true
-
-    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
-    ${token}=    Obter Token    ${login}
-
+    ${token}=    Criar Usuario E Obter Token    Admin    true
     ${res}=    Criar Produto    ${token}
-    Validar Produto Criado    ${res}
     Validar Contrato Produto    ${res}
-
