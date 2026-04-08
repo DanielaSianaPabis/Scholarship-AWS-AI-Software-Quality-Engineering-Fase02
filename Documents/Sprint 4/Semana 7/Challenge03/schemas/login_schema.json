@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Login Response Schema",
+  "description": "Schema de validação para resposta de login",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "enum": ["Login realizado com sucesso"]
+    },
+    "authorization": {
+      "type": "string",
+      "pattern": "^Bearer [a-zA-Z0-9\\-_]+\\.[a-zA-Z0-9\\-_]+\\.[a-zA-Z0-9\\-_]+$",
+      "description": "Token JWT no formato Bearer"
+    }
+  },
+  "required": ["message", "authorization"],
+  "additionalProperties": false
+}
