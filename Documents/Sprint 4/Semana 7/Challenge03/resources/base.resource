@@ -2,6 +2,7 @@
 
 *** Settings ***
 Library    RequestsLibrary
+Library    String 
 Library    Collections
 Resource   ../variables/variables.robot
 
@@ -12,9 +13,66 @@ Criar Sessao
 
     Create Session    serverest    ${BASE_URL}
 
+
 Criar Header Com Token
     [Documentation]    Cria um header de autenticação utilizando o token fornecido:
 
     [Arguments]    ${token}
     ${headers}=    Create Dictionary    Authorization=${token}
     RETURN    ${headers}
+
+
+Validar Campos Obrigatórios
+    [Arguments]    ${json}    @{campos}
+
+    FOR    ${campo}    IN    @{campos}
+        Dictionary Should Contain Key    ${json}    ${campo}
+        Should Not Be Empty    ${json['${campo}']}
+    END
+
+
+Validar Tipo Campo
+    [Arguments]    ${valor}    ${tipo}
+
+    IF    '${tipo}' == 'string'      Should Be String    ${valor}
+    IF    '${tipo}' == 'number'      Should Be True    isinstance(${valor}, (int, float))
+    IF    '${tipo}' == 'boolean'     Should Be True    isinstance(${valor}, bool)
+
+
+Validar ID
+    [Arguments]    ${id}
+
+    Should Be String    ${id}
+    Should Not Be Empty    ${id}
+    
+    ${length}=    Get Length    ${id}
+    Should Be True    ${length} > 15
+
+
+Validar Token JWT
+    [Arguments]    ${authorization}
+
+    Should Start With    ${authorization}    Bearer 
+
+    ${token_parts}=    Split String    ${authorization}    ${SPACE}    max_split=1
+    Length Should Be    ${token_parts}    2
+
+    ${token}=    Get From List    ${token_parts}    1
+    Should Not Be Empty    ${token}
+
+    ${jwt_parts}=    Split String    ${token}    .
+    Length Should Be    ${jwt_parts}    3
+
+    FOR    ${part}    IN    @{jwt_parts}
+        Should Not Be Empty    ${part}
+    END
+
+    ${token_length}=    Get Length    ${token}
+    Should Be True    ${token_length} > 20
+
+
+Validar Mensagem Resposta  
+    [Arguments]    ${mensagem_obtida}    ${mensagem_esperada}
+
+    Should Be Equal    ${mensagem_obtida}    ${mensagem_esperada}
+

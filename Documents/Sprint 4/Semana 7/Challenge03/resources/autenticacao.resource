@@ -16,6 +16,7 @@ Realizar Login
     ${response}=    POST On Session    serverest    /login    json=${body}    expected_status=any
     RETURN    ${response}
 
+
 Obter Token
     [Documentation]    Extrai o token de autenticação da resposta do login:
 
@@ -23,23 +24,25 @@ Obter Token
     ${token}=    Set Variable    ${response.json()['authorization']}
     RETURN    ${token}
 
-Criar Usuario E Obter Token
-    [Documentation]    Cria um usuário com email aleatório, realiza login e retorna o token de autenticação:
+Preparar Usuario De Login
+    [Documentation]    Gera email aleatório, cria usuário e salva o email como variável de teste:
 
-    [Arguments]    ${nome}    ${admin}
     ${email}=    Gerar Email Aleatorio
-    Criar Usuario    ${nome}    ${email}    ${SENHA_USER}    ${admin}
-    ${login}=    Realizar Login    ${email}    ${SENHA_USER}
-    ${token}=    Obter Token    ${login}
-    RETURN    ${token}
+    Criar Usuario    ${NOME_USER}    ${email}    ${SENHA_USER}    false
+    Set Test Variable    ${EMAIL_USER}    ${email}
+
 
 Validar Contrato Login
-    [Documentation]    Valida os elementos do contrato da resposta do login:
+    [Documentation]    Valida contrato do login: estrutura, tipos, mensagem e token JWT
 
     [Arguments]    ${response}
+    
     ${json}=    Set Variable    ${response.json()}
-    Dictionary Should Contain Key    ${json}    message
-    Dictionary Should Contain Key    ${json}    authorization
-    Should Be Equal    ${json['message']}    Login realizado com sucesso
-    Should Start With    ${json['authorization']}    Bearer
-    Should Not Be Empty    ${json['authorization']}
+    
+    Validar Campos Obrigatórios    ${json}    message    authorization
+
+    Validar Tipo Campo    ${json['message']}    string
+    Validar Tipo Campo    ${json['authorization']}    string
+
+    Validar Mensagem Resposta    ${json['message']}    Login realizado com sucesso
+    Validar Token JWT    ${json['authorization']}
