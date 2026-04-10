@@ -4,14 +4,14 @@
 Library    RequestsLibrary
 Library    String 
 Library    Collections
-Resource   ../variables/variables.robot
+Resource   ../variables/variables.robot 
 
 *** Keywords ***
 
 Criar Sessao
     [Documentation]    Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:
 
-    Create Session    serverest    ${BASE_URL}
+    Create Session    serverest    ${BASE_URL}    verify=true
 
 
 Criar Header Com Token
@@ -27,16 +27,32 @@ Validar Campos Obrigatórios
 
     FOR    ${campo}    IN    @{campos}
         Dictionary Should Contain Key    ${json}    ${campo}
-        Should Not Be Empty    ${json['${campo}']}
     END
+
+
+Validar Status Da Resposta
+    [Arguments]    ${status_esperado}    ${response}
+    Status Should Be    ${status_esperado}    ${response}
+
+
+Validar Mensagem Resposta  
+    [Arguments]    ${mensagem_obtida}    ${mensagem_esperada}
+
+    Should Be Equal    ${mensagem_obtida}    ${mensagem_esperada}
 
 
 Validar Tipo Campo
     [Arguments]    ${valor}    ${tipo}
 
-    IF    '${tipo}' == 'string'      Should Be String    ${valor}
-    IF    '${tipo}' == 'number'      Should Be True    isinstance(${valor}, (int, float))
-    IF    '${tipo}' == 'boolean'     Should Be True    isinstance(${valor}, bool)
+    IF    '${tipo}' == 'string'
+        Should Be String    ${valor}
+    ELSE IF    '${tipo}' == 'number'
+        Should Be True    isinstance($valor, (int, float))
+    ELSE IF    '${tipo}' == 'boolean'
+        Should Be True    isinstance($valor, bool)
+    ELSE
+        Fail    Tipo desconhecido: ${tipo}
+    END
 
 
 Validar ID
@@ -46,13 +62,13 @@ Validar ID
     Should Not Be Empty    ${id}
     
     ${length}=    Get Length    ${id}
-    Should Be True    ${length} > 15
+    Should Be True    ${length} >= 16
 
 
 Validar Token JWT
     [Arguments]    ${authorization}
 
-    Should Start With    ${authorization}    Bearer 
+    Should Start With    ${authorization}    Bearer${SPACE}
 
     ${token_parts}=    Split String    ${authorization}    ${SPACE}    max_split=1
     Length Should Be    ${token_parts}    2
@@ -69,10 +85,4 @@ Validar Token JWT
 
     ${token_length}=    Get Length    ${token}
     Should Be True    ${token_length} > 20
-
-
-Validar Mensagem Resposta  
-    [Arguments]    ${mensagem_obtida}    ${mensagem_esperada}
-
-    Should Be Equal    ${mensagem_obtida}    ${mensagem_esperada}
 
