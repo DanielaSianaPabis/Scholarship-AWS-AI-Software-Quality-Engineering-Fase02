@@ -7,18 +7,23 @@ Resource   ../resources/base.resource
 *** Keywords ***
 
 Criar Produto
-    [Documentation]    Cria um produto utilizando um token de autenticação e valida o status esperado:
+    [Documentation]    Cria um produto utilizando um token de autenticação:
 
-    [Arguments]    ${token}    ${status_esperado}=201
+    [Arguments]    ${token}    ${preco}=100    ${quantidade}=10
+
     ${headers}=    Criar Header Com Token    ${token}
 
-    ${produto}=    Generate Random String    5
+    ${random}=    Generate Random String    5
+    ${nome}=      Set Variable    Produto ${random}
+
+    ${preco_int}=       Convert To Integer    ${preco}
+    ${quantidade_int}=  Convert To Integer    ${quantidade}
 
     ${body}=    Create Dictionary
-    ...    nome=Produto ${produto}
-    ...    preco=100
-    ...    descricao=Teste
-    ...    quantidade=10
+    ...    nome=${nome}
+    ...    preco=${preco_int}
+    ...    descricao=Produto de teste
+    ...    quantidade=${quantidade_int}
 
     ${response}=    POST On Session
     ...    serverest
@@ -27,14 +32,57 @@ Criar Produto
     ...    headers=${headers}
     ...    expected_status=any
 
-    Status Should Be    ${status_esperado}    ${response}
+    RETURN    ${response}
+
+
+Atualizar Produto
+    [Documentation]    Atualiza um produto pelo ID na API ServeRest:
+
+    [Arguments]    ${token}    ${id}    ${preco}=150    ${quantidade}=20
+
+    ${headers}=    Criar Header Com Token    ${token}
+
+    ${random}=    Generate Random String    5
+    ${nome}=      Set Variable    Produto Atualizado ${random}
+
+    ${preco_int}=       Convert To Integer    ${preco}
+    ${quantidade_int}=  Convert To Integer    ${quantidade}
+
+    ${body}=    Create Dictionary
+    ...    nome=${nome}
+    ...    preco=${preco_int}
+    ...    descricao=Produto atualizado
+    ...    quantidade=${quantidade_int}
+
+    ${response}=    PUT On Session
+    ...    serverest
+    ...    /produtos/${id}
+    ...    json=${body}
+    ...    headers=${headers}
+    ...    expected_status=any
+
+    RETURN    ${response}
+
+
+Buscar Produto por ID 
+    [Documentation]    Busca um produto pelo ID na API ServeRest:
+
+    [Arguments]    ${id}
+    ${response}=    GET On Session    serverest    /produtos/${id}    expected_status=any
+    RETURN    ${response}
+
+
+Listar Produtos
+    [Documentation]    Lista todos os produtos cadastrados na API ServeRest:
+
+    ${response}=    GET On Session    serverest    /produtos    expected_status=any
     RETURN    ${response}
 
 
 Excluir Produto
-    [Documentation]    Exclui um produto utilizando token de autenticação e o ID do produto, validando o status esperado:
+    [Documentation]    Exclui um produto utilizando token de autenticação e o ID do produto:
 
-    [Arguments]    ${token}    ${produto_id}    ${status_esperado}=200
+    [Arguments]    ${token}    ${produto_id}
 
     ${headers}=    Criar Header Com Token    ${token}
 
@@ -44,16 +92,31 @@ Excluir Produto
     ...    headers=${headers}
     ...    expected_status=any
 
-    Status Should Be    ${status_esperado}    ${response}
     RETURN    ${response}
 
 
 Validar Contrato Produto
-    [Documentation]    Valida os elementos do contrato da resposta da criação de um produto:
+    [Documentation]    Valida contrato do produto via GET: estrutura, tipos e valores persistidos
 
     [Arguments]    ${response}
+
     ${json}=    Set Variable    ${response.json()}
-    Dictionary Should Contain Key    ${json}    message
-    Dictionary Should Contain Key    ${json}    _id
-    Should Be Equal    ${json['message']}    Cadastro realizado com sucesso
-    Should Not Be Empty    ${json['_id']}
+
+    Validar Campos Obrigatórios    ${json}    nome    preco    descricao    quantidade    _id
+
+    Validar Tipo Campo    ${json['nome']}         string
+    Validar Tipo Campo    ${json['preco']}        number
+    Validar Tipo Campo    ${json['descricao']}    string
+    Validar Tipo Campo    ${json['quantidade']}   number
+    Validar Tipo Campo    ${json['_id']}          string
+
+    Validar ID    ${json['_id']}
+
+
+Criar Produto E Obter ID 
+    [Documentation]    Cria um produto e retorna seu ID.
+    ...                Falha imediatamente se o cadastro não retornar 201.
+    [Arguments]    ${token}    ${preco}=100    ${quantidade}=10
+    ${res}=    Criar Produto    ${token}    preco=${preco}    quantidade=${quantidade}
+    Validar Status Da Resposta    201    ${res}
+    RETURN    ${res.json()['_id']}
