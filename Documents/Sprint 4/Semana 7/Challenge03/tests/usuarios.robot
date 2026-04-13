@@ -29,7 +29,7 @@ CT-U02 Criar usuário com email duplicado
     Status Should Be    400    ${res}
     Validar Mensagem Resposta    ${res.json()['message']}    Este email já está sendo usado
 
-
+# BUG IDENTIFICADO (PERMITINDO CRIAÇÃO DE USUÁRIO COM CAMPOS VAZIOS)
 CT-U03 Criar usuário com campos vazios
     [Tags]    usuarios    validacao
     [Documentation]    Testa a criação de um usuário contendo campos com strings vazias.

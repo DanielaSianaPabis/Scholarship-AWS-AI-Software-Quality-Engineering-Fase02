@@ -45,7 +45,7 @@ CT-A04 Login com campos em branco
     ${res}=    Realizar Login    ${EMPTY}    ${EMPTY}
     Status Should Be    400    ${res}
 
-
+# TESTE DE CARGA COM 50 LOGINS SIMULTÂNEOS RETORNA, em certos momentos, STATUS CODE 401, O QUE EVIDENCIA PROBLEMA DE CONCORRÊNCIA NA API
 CT-A05 Múltiplos logins simultâneos
     [Tags]    autenticacao    concorrencia    stress
     [Documentation]    Testa 50 logins simultâneos com o mesmo usuário para validar concorrência.
