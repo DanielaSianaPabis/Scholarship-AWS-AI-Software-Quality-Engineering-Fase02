@@ -65,13 +65,13 @@ CT-P06 Atualizar produto existente
     Status Should Be    200    ${res}
     Validar Mensagem Resposta    ${res.json()['message']}    Registro alterado com sucesso
 
-# BUG IDENTIFICADO (STATUS CODE 400 PARA ID MENOR QUE 16 CARACTERES - TROCAR ID DE: UugfO0IlXp0x2ABC PARA: UugfO0IlXp0x2)
+# BUG IDENTIFICADO (STATUS CODE 400 PARA ID MENOR QUE 16 CARACTERES - TROCADO ID DE: UugfO0IlXp0x2ABC PARA: UugfO0IlXp0x2)
 # BUG IDENTIFICADO (RETORNA STATUS CODE 200 AO EXCLUIR PRODUTO COM ID INVÁLIDO)
 CT-P07 Excluir produto com ID inválido
     [Tags]    produtos    exclusao
     [Documentation]    Testa a exclusão de um produto utilizando um ID inválido.
 
-    ${res}=    Excluir Produto    ${TOKEN_ADMIN}    UugfO0IlXp0x2ABC 
+    ${res}=    Excluir Produto    ${TOKEN_ADMIN}    UugfO0IlXp0x2
     Status Should Be    200    ${res}
     Validar Mensagem Resposta    ${res.json()['message']}    Nenhum registro excluído
 
