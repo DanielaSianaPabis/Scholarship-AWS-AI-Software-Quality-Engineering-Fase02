@@ -1,13 +1,13 @@
 [Documentation]   Recurso de Produtos para a API ServeRest, contendo as keywords necessárias para aplicação nos testes
 
 *** Settings ***
-Library    String
-Resource   ../resources/base.resource 
+
+Resource   base.resource 
 
 *** Keywords ***
 
 Criar Produto
-    [Documentation]    Cria um produto utilizando um token de autenticação:
+    [Documentation]    Cria um produto utilizando um token de autenticação.
 
     [Arguments]    ${token}    ${preco}=100    ${quantidade}=10
 
@@ -34,9 +34,29 @@ Criar Produto
 
     RETURN    ${response}
 
+Criar Produto E Obter ID 
+    [Documentation]    Cria um produto e retorna seu ID.
+    ...                Falha imediatamente se o cadastro não retornar 201.
+    [Arguments]    ${token}    ${preco}=100    ${quantidade}=10
+    ${res}=    Criar Produto    ${token}    ${preco}    ${quantidade}
+    Validar Status Da Resposta    201    ${res}
+    RETURN    ${res.json()['_id']}
+
+Listar Produtos
+    [Documentation]    Lista todos os produtos cadastrados.
+
+    ${response}=    GET On Session    serverest    /produtos    expected_status=any
+    RETURN    ${response}
+
+Buscar Produto por ID 
+    [Documentation]    Busca um produto pelo ID na API ServeRest:
+
+    [Arguments]    ${id}
+    ${response}=    GET On Session    serverest    /produtos/${id}    expected_status=any
+    RETURN    ${response}
 
 Atualizar Produto
-    [Documentation]    Atualiza um produto pelo ID na API ServeRest:
+    [Documentation]    Atualiza um produto pelo ID.
 
     [Arguments]    ${token}    ${id}    ${preco}=150    ${quantidade}=20
 
@@ -63,24 +83,8 @@ Atualizar Produto
 
     RETURN    ${response}
 
-
-Buscar Produto por ID 
-    [Documentation]    Busca um produto pelo ID na API ServeRest:
-
-    [Arguments]    ${id}
-    ${response}=    GET On Session    serverest    /produtos/${id}    expected_status=any
-    RETURN    ${response}
-
-
-Listar Produtos
-    [Documentation]    Lista todos os produtos cadastrados na API ServeRest:
-
-    ${response}=    GET On Session    serverest    /produtos    expected_status=any
-    RETURN    ${response}
-
-
 Excluir Produto
-    [Documentation]    Exclui um produto utilizando token de autenticação e o ID do produto:
+    [Documentation]    Exclui um produto utilizando token de autenticação e o ID do produto.
 
     [Arguments]    ${token}    ${produto_id}
 
@@ -94,29 +98,9 @@ Excluir Produto
 
     RETURN    ${response}
 
-
 Validar Contrato Produto
-    [Documentation]    Valida contrato do produto via GET: estrutura, tipos e valores persistidos
+    [Documentation]    Valida contrato do produto via GET usando schema JSON.
 
     [Arguments]    ${response}
 
-    ${json}=    Set Variable    ${response.json()}
-
-    Validar Campos Obrigatórios    ${json}    nome    preco    descricao    quantidade    _id
-
-    Validar Tipo Campo    ${json['nome']}         string
-    Validar Tipo Campo    ${json['preco']}        number
-    Validar Tipo Campo    ${json['descricao']}    string
-    Validar Tipo Campo    ${json['quantidade']}   number
-    Validar Tipo Campo    ${json['_id']}          string
-
-    Validar ID    ${json['_id']}
-
-
-Criar Produto E Obter ID 
-    [Documentation]    Cria um produto e retorna seu ID.
-    ...                Falha imediatamente se o cadastro não retornar 201.
-    [Arguments]    ${token}    ${preco}=100    ${quantidade}=10
-    ${res}=    Criar Produto    ${token}    preco=${preco}    quantidade=${quantidade}
-    Validar Status Da Resposta    201    ${res}
-    RETURN    ${res.json()['_id']}
+    Validar Contrato    ${response}    produto_schema.json

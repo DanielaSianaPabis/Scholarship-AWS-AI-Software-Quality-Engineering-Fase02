@@ -9,3 +9,6 @@ ${NOME_USER}       User Test
 ${EMAIL_USER}      ${EMPTY}
 ${TOKEN_ADMIN}     ${EMPTY}
 ${ID_PRODUTO}      ${EMPTY}
+
+${ID_USER}       ${EMPTY}
+${ID_ADMIN}      ${EMPTY}

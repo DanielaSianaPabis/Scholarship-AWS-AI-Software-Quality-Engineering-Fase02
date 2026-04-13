@@ -4,85 +4,72 @@
 Library    RequestsLibrary
 Library    String 
 Library    Collections
+Library    OperatingSystem
 Resource   ../variables/variables.robot 
+Resource   usuarios.resource 
+Resource   autenticacao.resource
+Resource   produtos.resource  
+Resource   carrinhos.resource   
 
 *** Keywords ***
 
 Criar Sessao
-    [Documentation]    Cria uma sessão para a API ServeRest utilizando a URL base definida nas variáveis:
+    [Documentation]    Cria uma sessão para a API utilizando a URL base definida nas variáveis.
 
     Create Session    serverest    ${BASE_URL}    verify=true
 
 
 Criar Header Com Token
-    [Documentation]    Cria um header de autenticação utilizando o token fornecido:
-
+    [Documentation]    Cria um header de autenticação utilizando o token fornecido.
     [Arguments]    ${token}
+
     ${headers}=    Create Dictionary    Authorization=${token}
     RETURN    ${headers}
 
 
-Validar Campos Obrigatórios
-    [Arguments]    ${json}    @{campos}
-
-    FOR    ${campo}    IN    @{campos}
-        Dictionary Should Contain Key    ${json}    ${campo}
-    END
-
-
 Validar Status Da Resposta
+    [Documentation]    Valida o status code da resposta da requisição.
     [Arguments]    ${status_esperado}    ${response}
+
     Status Should Be    ${status_esperado}    ${response}
 
 
 Validar Mensagem Resposta  
+    [Documentation]    Valida a mensagem de resposta da requisição.
     [Arguments]    ${mensagem_obtida}    ${mensagem_esperada}
 
     Should Be Equal    ${mensagem_obtida}    ${mensagem_esperada}
 
 
-Validar Tipo Campo
-    [Arguments]    ${valor}    ${tipo}
+Validar Contrato
+    [Documentation]    Valida o contrato da resposta da requisição utilizando um arquivo de schema JSON.
+    [Arguments]    ${response}    ${schema_file}
 
-    IF    '${tipo}' == 'string'
-        Should Be String    ${valor}
-    ELSE IF    '${tipo}' == 'number'
-        Should Be True    isinstance($valor, (int, float))
-    ELSE IF    '${tipo}' == 'boolean'
-        Should Be True    isinstance($valor, bool)
-    ELSE
-        Fail    Tipo desconhecido: ${tipo}
-    END
-
-
-Validar ID
-    [Arguments]    ${id}
-
-    Should Be String    ${id}
-    Should Not Be Empty    ${id}
+    ${json_data}=    Set Variable    ${response.json()}
+    ${schema_path}=    Set Variable    ${CURDIR}/../schemas/${schema_file}
+    ${schema_content}=    Get File    ${schema_path}
     
-    ${length}=    Get Length    ${id}
-    Should Be True    ${length} >= 16
+    Evaluate    __import__('jsonschema').validate(${json_data}, __import__('json').loads(r'''${schema_content}'''))    modules=jsonschema,json
 
 
-Validar Token JWT
-    [Arguments]    ${authorization}
+Limpar Dados Do Teste
+    [Documentation]    Limpa dados criados durante o teste (carrinho, produto e usuário).
+    ...                Ignora erros caso os recursos já tenham sido excluídos ou não existam.
 
-    Should Start With    ${authorization}    Bearer${SPACE}
-
-    ${token_parts}=    Split String    ${authorization}    ${SPACE}    max_split=1
-    Length Should Be    ${token_parts}    2
-
-    ${token}=    Get From List    ${token_parts}    1
-    Should Not Be Empty    ${token}
-
-    ${jwt_parts}=    Split String    ${token}    .
-    Length Should Be    ${jwt_parts}    3
-
-    FOR    ${part}    IN    @{jwt_parts}
-        Should Not Be Empty    ${part}
+    ${token_existe}=    Run Keyword And Return Status    Variable Should Exist    ${TOKEN_ADMIN}
+    IF    ${token_existe}
+        Run Keyword And Ignore Error    Concluir Compra    ${TOKEN_ADMIN}
+        Run Keyword And Ignore Error    Cancelar Compra    ${TOKEN_ADMIN}
+        Run Keyword And Ignore Error    Excluir Produto    ${TOKEN_ADMIN}    ${ID_PRODUTO}
     END
+    Run Keyword And Ignore Error    Excluir Usuario    ${ID_ADMIN}
+    Run Keyword And Ignore Error    Excluir Usuario    ${ID_USER}
 
-    ${token_length}=    Get Length    ${token}
-    Should Be True    ${token_length} > 20
 
+Gerar Email Para Teste     
+    [Documentation]    Gera email aleatório, salva como variável de teste e retorna o email.
+
+    ${random}=    Generate Random String    5     [LETTERS]
+    ${email}=    Set Variable    user_${random}@email.com
+    Set Test Variable    ${EMAIL_USER}    ${email}
+    RETURN    ${email}
