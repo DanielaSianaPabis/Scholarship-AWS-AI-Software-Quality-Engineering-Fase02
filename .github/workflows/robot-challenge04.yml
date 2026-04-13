@@ -30,6 +30,7 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
           pip install requests
+          pip install jsonschema
 
       # 4. Rodar TODOS os testes do Challenge03
       # (results NÃO são commitados, só gerados no CI)
