@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Carrinho GET Response Schema",
+  "description": "Schema de validação para resposta de busca de carrinhos",
+  "type": "object",
+  "properties": {
+    "quantidade": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "carrinhos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "produtos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "idProduto": {
+                  "type": "string"
+                },
+                "quantidade": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "precoUnitario": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": ["idProduto", "quantidade", "precoUnitario"],
+              "additionalProperties": false
+            }
+          },
+          "precoTotal": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "quantidadeTotal": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "idUsuario": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]{16}$"
+          }
+        },
+        "required": ["produtos", "precoTotal", "quantidadeTotal", "idUsuario", "_id"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["quantidade", "carrinhos"],
+  "additionalProperties": false
+}
