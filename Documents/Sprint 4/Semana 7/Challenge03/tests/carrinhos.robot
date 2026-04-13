@@ -67,23 +67,18 @@ CT-C05 Cancelar compra
 
 CT-C06 Validar retorno de produto ao estoque após cancelamento
     [Tags]    carrinhos    cancelamento    estoque
+    [Documentation]    Valida que a quantidade do produto é restaurada após o cancelamento da compra:
 
-    ${id_antes}=    Buscar Produto por ID    ${ID_PRODUTO}
-    ${json_antes}=    Set Variable    ${id_antes.json()}
-
-    Run Keyword If    'quantidade' not in ${json_antes}    Return From Keyword
-    ${quantidade_antes}=    Set Variable    ${json_antes['quantidade']}
+    ${antes}=    Buscar Produto por ID    ${ID_PRODUTO}
+    ${quantidade_antes}=    Set Variable    ${antes.json()['quantidade']}
 
     Criar Carrinho    ${TOKEN_ADMIN}    ${ID_PRODUTO}
     Cancelar Compra    ${TOKEN_ADMIN}
 
-    ${id_depois}=    Buscar Produto por ID    ${ID_PRODUTO}
-    ${json_depois}=    Set Variable    ${id_depois.json()}
+    ${depois}=    Buscar Produto por ID    ${ID_PRODUTO}
+    ${quantidade_depois}=    Set Variable    ${depois.json()['quantidade']}
 
-    Run Keyword If    'quantidade' not in ${json_depois}    Return From Keyword
-    ${quantidade_depois}=    Set Variable    ${json_depois['quantidade']}
-
-    Should Be True    ${quantidade_depois} == ${quantidade_antes}
+    Should Be Equal As Numbers    ${quantidade_depois}    ${quantidade_antes}
 
 
 CT-C07 Concluir uma compra
@@ -104,9 +99,6 @@ CT-C08 Contrato de carrinho
     ${res}=    Buscar Carrinho    ${TOKEN_ADMIN}
     Status Should Be    200    ${res}
 
-    ${ok}=    Run Keyword And Return Status    Should Not Be Empty    ${res.text}
-    Run Keyword If    not ${ok}    Return From Keyword
-    
     Validar Contrato Carrinho    ${res}
 
 

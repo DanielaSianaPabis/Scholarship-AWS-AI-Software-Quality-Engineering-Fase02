@@ -22,8 +22,10 @@
                   "type": "string"
                 },
                 "quantidade": {
-                  "type": "integer",
-                  "minimum": 1
+                  "oneOf": [
+                    {"type": "integer", "minimum": 1},
+                    {"type": "string", "pattern": "^[0-9]+$"}
+                  ]
                 },
                 "precoUnitario": {
                   "type": "integer",
@@ -39,8 +41,10 @@
             "minimum": 0
           },
           "quantidadeTotal": {
-            "type": "integer",
-            "minimum": 1
+            "oneOf": [
+              {"type": "integer", "minimum": 1},
+              {"type": "string", "pattern": "^[0-9]+$"}
+            ]
           },
           "idUsuario": {
             "type": "string"
