@@ -1,0 +1,45 @@
+name: Challenge04 - Robot Framework CI
+
+on:
+  push:
+    paths:
+      - 'Documents/Sprint 4/Semana 7/Challenge03/**'
+  pull_request:
+    paths:
+      - 'Documents/Sprint 4/Semana 7/Challenge03/**'
+
+jobs:
+  robot-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixar código do repo
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      # 2. Configurar Python estável
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Instalar dependências
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install robotframework
+          pip install robotframework-requests
+          pip install requests
+
+      # 4. Rodar TODOS os testes do Challenge03
+      # (results NÃO são commitados, só gerados no CI)
+      - name: Executar testes do Challenge03
+        run: |
+          robot -d results/todos "Documents/Sprint 4/Semana 7/Challenge03/tests/"
+
+      # 5. Upload dos resultados como artefato
+      - name: Upload dos relatórios
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-reports-challenge03
+          path: results/
