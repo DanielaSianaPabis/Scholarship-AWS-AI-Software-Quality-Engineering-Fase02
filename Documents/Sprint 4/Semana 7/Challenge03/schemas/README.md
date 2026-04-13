@@ -1,79 +1,35 @@
-# Schemas JSON - API ServeRest
+# Schemas JSON - API ServeRest (Challenge 04)
 
-Esta pasta contém os schemas JSON para validação de contratos da API ServeRest.
+Esta pasta contém os schemas JSON para validação de contratos da API ServeRest nos testes automatizados.
 
-## Arquivos disponíveis
+## Schemas disponíveis
 
-| Arquivo | Descrição | Uso |
-|---------|-----------|-----|
-| `usuario_schema.json` | Valida resposta de criação de usuário | POST /usuarios |
-| `login_schema.json` | Valida resposta de login | POST /login |
-| `produto_schema.json` | Valida resposta de criação de produto | POST /produtos |
-| `carrinho_schema.json` | Valida resposta de criação de carrinho | POST /carrinhos |
-| `compra_concluida_schema.json` | Valida resposta de conclusão de compra | DELETE /carrinhos/concluir-compra |
-| `erro_schema.json` | Valida respostas de erro genéricas | Qualquer endpoint com erro |
-
-## Como usar
-
-### 1. Instalar biblioteca necessária
-
-```bash
-pip install robotframework-jsonlibrary
-```
-
-### 2. Importar no resource
-
-```robot
-*** Settings ***
-Library    JSONLibrary
-Library    OperatingSystem
-```
-
-### 3. Criar keyword de validação
-
-```robot
-*** Keywords ***
-Validar Schema JSON
-    [Arguments]    ${response}    ${schema_file}
-    ${schema}=    Load JSON From File    ${CURDIR}/../schemas/${schema_file}
-    ${json_response}=    Set Variable    ${response.json()}
-    Validate Json By Schema File    ${json_response}    ${CURDIR}/../schemas/${schema_file}
-```
-
-### 4. Usar nos testes
-
-```robot
-CT-A03 Contrato login
-    ${email}=    Gerar Email Aleatorio
-    Criar Usuario    User Login    ${email}    ${SENHA_USER}    false
-    ${res}=    Realizar Login    ${email}    ${SENHA_USER}
-    Status Should Be    200    ${res}
-    Validar Schema JSON    ${res}    login_schema.json
-```
+| Schema | Endpoint | Teste | Descrição |
+|--------|----------|-------|-----------|
+| `login_schema.json` | POST /login | CT-A03 | Valida resposta de login com sucesso |
+| `usuario_schema.json` | GET /usuarios/{id} | CT-U07 | Valida resposta de busca de usuário por ID |
+| `produto_schema.json` | GET /produtos/{id} | CT-P09 | Valida resposta de busca de produto por ID |
+| `carrinho_schema.json` | GET /carrinhos | CT-C07 | Valida resposta de busca de carrinhos |
+| `produto_schema.json` | GET /produtos | - | Valida resposta de busca de produto |
 
 ## Estrutura dos schemas
 
-Todos os schemas seguem o padrão JSON Schema Draft-07 e incluem:
+Todos os schemas seguem o padrão **JSON Schema Draft-07** e incluem:
 
-- **$schema**: Versão do JSON Schema
-- **title**: Título descritivo
-- **description**: Descrição do propósito
-- **type**: Tipo de dado (object, array, string, etc)
-- **properties**: Definição dos campos esperados
-- **required**: Lista de campos obrigatórios
-- **additionalProperties**: Se permite campos extras (false = rígido, true = flexível)
-- **pattern**: Regex para validação de formato
-- **enum**: Valores exatos permitidos
+- **Campos obrigatórios**: Definidos em `required`
+- **Tipos de dados**: string, integer, array, object
+- **Validações de formato**: Regex para IDs, tokens JWT, emails
+- **Valores permitidos**: `enum` para mensagens fixas
+- **Restrições numéricas**: `minimum` para valores não negativos
+- **Campos extras**: `additionalProperties: false` (não permite)
 
-## Validações implementadas
+## Testes de contrato
 
-### IDs (_id)
-- Padrão: 16 caracteres alfanuméricos
-- Regex: `^[a-zA-Z0-9]{16}$`
+Os schemas são usados nos seguintes testes:
 
-### Token JWT (authorization)
-- Padrão: Bearer + JWT (3 partes separadas por ponto)
-- Regex: `^Bearer [a-zA-Z0-9\-_]+\.[a-zA-Z0-9\-_]+\.[a-zA-Z0-9\-_]+$`
+- **CT-A03**: Contrato de login
+- **CT-U07**: Contrato de usuário
+- **CT-P09**: Contrato de produto
+- **CT-C07**: Contrato de carrinho
 
-### Mensagens
-- Valores fixos usando `enum` para garantir mensagens exatas
+Cada teste valida automaticamente a estrutura completa da resposta da API usando o schema correspondente.

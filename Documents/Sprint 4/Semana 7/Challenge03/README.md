@@ -1,42 +1,73 @@
-# Testes Automatizados - API ServeRest (Challenge 03) 
+# Testes Automatizados - API ServeRest (Challenge 04) 
 
-## Objetivo do Projeto 
+## Sobre o Projeto
 
-Este projeto tem como objetivo validar os principais fluxos da **API ServeRest** (<https://compassuol.serverest.dev/>), utilizando testes automatizados com **Robot Framework**. 
+Este projeto é uma **evolução do Challenge 03**, com melhorias na estrutura, validações e qualidade dos testes automatizados da **API ServeRest** (<https://compassuol.serverest.dev/>), utilizando **Robot Framework**.
 
-Foram implementados testes para cenários como: 
-- Cadastro e login de usuários 
-- Criação e exclusão de produtos 
-- Criação de carrinho 
-- Conclusão de compra 
-- Validações de regras de negócio e contratos de resposta 
+### Melhorias implementadas no Challenge 04:
 
---- 
+**Validação de contratos com JSON Schema**
+- Implementação de schemas JSON para validação automática de contratos
+- 4 schemas criados (login, usuário, produto, carrinho)
+- Validações completas de estrutura, tipos e formatos
 
-## Tecnologias utilizadas 
-- Python (v 3.14.3) 
-- Robot Framework (v 7.4.2) 
-- RequestsLibrary (v 0.9.7) 
+**Otimização de keywords**
+- 32 keywords customizadas organizadas por domínio
+- Keywords reutilizáveis e documentadas
+- Separação clara de responsabilidades
 
---- 
+**Validações de estoque aprimoradas**
+- Validação de decremento após compra
+- Validação de retorno ao estoque após cancelamento
+- Lógica flexível e parametrizável
 
-## Ambiente de desenvolvimento utilizado
+**Estrutura de projeto profissional**
+- Organização por domínios (usuarios, produtos, carrinhos, autenticacao)
+- Resources específicos para cada módulo
+- Documentação completa com README em schemas/
+
+---
+
+## Cenários de Teste
+
+### Total: 31 cenários automatizados
+
+| Módulo | Cenários | Descrição |
+|--------|----------|-----------|
+| **Usuários** | 7 | Criação, listagem, atualização, exclusão e validação de contrato |
+| **Produtos** | 9 | CRUD completo, validações de permissão e contrato |
+| **Autenticação** | 7 | Login válido/inválido, múltiplos logins, validação de contrato |
+| **Carrinhos** | 8 | Criação, compra, cancelamento, validação de estoque e contrato |
+
+---
+
+## Tecnologias utilizadas
+
+- Python (v 3.14.3)
+- Robot Framework (v 7.4.2)
+- RequestsLibrary (v 0.9.7)
+- jsonschema (v 4.26.0) - **Novo no Challenge 04**
+
+---
+
+## Ambiente de desenvolvimento
+
 - Visual Studio Code (v 1.113.0)
 
-## Instalação das dependências 
+---
 
-### 1. Instalar o Python 
+## Instalação das dependências
 
-Baixe e instale o Python (versão 3.x.x). Para mais, acesse: <https://www.python.org/> 
+### 1. Instalar o Python
+
+Baixe e instale o Python (versão 3.x.x): <https://www.python.org/>
 
 Verifique a instalação:
 ```bash
 python --version
 ```
 
-### 2. Instalar Robot
-
-Instale o Robot Framework:
+### 2. Instalar Robot Framework
 
 ```bash
 pip install robotframework
@@ -47,49 +78,103 @@ Verifique a instalação:
 robot --version
 ```
 
-Instale a biblioteca RequestsLibrary: 
+### 3. Instalar bibliotecas necessárias
 
 ```bash
 pip install robotframework-requests
+pip install jsonschema
 ```
 
 Verifique a instalação:
 ```bash
 pip show requests
+pip show jsonschema
 ```
 
---- 
+---
 
-## Como executar os testes 
+## Estrutura do Projeto
 
-### Para Executar todos os testes 
+```
+Challenge04/
+├── resources/           # Keywords customizadas por domínio
+│   ├── base.resource
+│   ├── usuarios.resource
+│   ├── produtos.resource
+│   ├── autenticacao.resource
+│   └── carrinhos.resource
+├── schemas/            # Schemas JSON para validação de contratos
+│   ├── login_schema.json
+│   ├── usuario_schema.json
+│   ├── produto_schema.json
+│   ├── carrinho_schema.json
+│   └── README.md
+├── tests/              # Suítes de testes
+│   ├── usuarios.robot
+│   ├── produtos.robot
+│   ├── autenticacao.robot
+│   └── carrinhos.robot
+├── variables/          # Variáveis globais
+│   └── variables.robot
+├── results/            # Relatórios de execução
+└── README.md
+```
 
-Execute em seu terminal:
+---
+
+## Como executar os testes
+
+### Executar todos os testes
+
 ```bash
 robot -d results/todos tests/
 ```
 
-### Para executar suítes individuais 
+### Executar suítes individuais
 
-Execute em seu terminal:
 ```bash
 robot -d results/[nome_pasta] tests/[nome_arquivo].robot
 ```
-*Ex: robot -d results/usuarios tests/usuarios.robot* 
 
-## Evidências dos testes 
+**Exemplos:**
+```bash
+robot -d results/usuarios tests/usuarios.robot
+robot -d results/produtos tests/produtos.robot
+robot -d results/autenticacao tests/autenticacao.robot
+robot -d results/carrinhos tests/carrinhos.robot
+```
 
-Após a execução individual ou conjunta das suítes, serão gerados os seguintes arquivos (já presentes), em results/: 
-- log.html: fornece detalhes completos da execução 
-- report.html: fornece resumo dos testes 
-- output.xml: arquivo bruto da execução 
+### Executar testes por tag
 
-## Como visualizar 
+```bash
+robot -d results/smoke -i smoke tests/
+robot -d results/contrato -i contrato tests/
+```
 
-Acesse o terminal e insira:
+---
+
+## Evidências dos testes
+
+Após a execução, são gerados automaticamente em `results/`:
+
+- **log.html**: Detalhes completos da execução
+- **report.html**: Resumo dos testes executados
+- **output.xml**: Arquivo bruto da execução
+
+### Visualizar resultados
+
 ```bash
 start results
 ```
 
-Abrirá o local onde seus arquivos de results estão armazenados. Selecione a pasta e o arquivo desejado para sua vizualização.
+Ou acesse diretamente os arquivos HTML no navegador.
 
+---
+
+## Diferenciais do Challenge 04
+
+- **Validação de contratos automatizada** com JSON Schema
+- **32 keywords reutilizáveis** organizadas por domínio
+- **Maior cobertura** das keywords criadas
+- **Documentação** em todos os módulos
+- **Validações robustas** de regras de negócio
