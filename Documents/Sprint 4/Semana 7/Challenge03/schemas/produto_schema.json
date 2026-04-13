@@ -1,12 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Produto Response Schema",
-  "description": "Schema de validação para resposta de criação de produto",
+  "title": "Produto GET Response Schema",
+  "description": "Schema de validação para resposta de busca de produto por ID",
   "type": "object",
   "properties": {
-    "message": {
-      "type": "string",
-      "enum": ["Cadastro realizado com sucesso"]
+    "nome": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "quantidade": {
+      "type": "integer",
+      "minimum": 0
     },
     "_id": {
       "type": "string",
@@ -14,6 +24,6 @@
       "description": "ID único do produto com 16 caracteres alfanuméricos"
     }
   },
-  "required": ["message", "_id"],
+  "required": ["nome", "preco", "descricao", "quantidade", "_id"],
   "additionalProperties": false
 }
