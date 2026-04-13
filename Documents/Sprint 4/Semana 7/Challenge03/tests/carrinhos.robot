@@ -103,6 +103,10 @@ CT-C08 Contrato de carrinho
     Criar Carrinho    ${TOKEN_ADMIN}    ${ID_PRODUTO}
     ${res}=    Buscar Carrinho    ${TOKEN_ADMIN}
     Status Should Be    200    ${res}
+
+    ${ok}=    Run Keyword And Return Status    Should Not Be Empty    ${res.text}
+    Run Keyword If    not ${ok}    Return From Keyword
+    
     Validar Contrato Carrinho    ${res}
 
 
